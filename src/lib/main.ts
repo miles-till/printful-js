@@ -21,9 +21,9 @@ import { getAPIFunctions } from './functions';
 
 const DEFAULT_BASE_URL = 'https://api.printful.com';
 
-const getDefaultInit = (b64ApiKey: string) => ({
+const getDefaultInit = (apiKey: string) => ({
   headers: {
-    Authorization: `Basic ${b64ApiKey}`,
+    Authorization: `Bearer ${apiKey}`,
   },
 });
 
@@ -34,15 +34,13 @@ type Options = {
   readonly handleError?: ErrorHandler;
 };
 
-const b64 = (apiKey: string): string => Buffer.from(apiKey).toString('base64');
-
 const printful = ({
   baseUrl = DEFAULT_BASE_URL,
   apiKey,
   fetchConfig = {},
 }: // handleError = defaultHandleError,
 Options) => {
-  const requestInit = getDefaultInit(b64(apiKey));
+  const requestInit = getDefaultInit(apiKey);
   const fetch = getFetch(baseUrl, { ...requestInit, ...fetchConfig });
   const apiFunctions = getAPIFunctions(fetch);
   return {
