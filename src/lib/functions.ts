@@ -15,6 +15,7 @@ import {
 } from '../types/functions';
 
 import { Fetch } from './fetch';
+import { ratelimited } from './ratelimit';
 
 const getQueryString = <P extends GETParameters>(parameters: P): string =>
   Object.entries(parameters)
@@ -84,7 +85,7 @@ export const getProcessedResponse = async <R>(
   fetch: () => Promise<Response>
 ) => {
   try {
-    return await fetch()
+    return await ratelimited(fetch)
       .then((response) => {
         return response.json() as unknown as R;
       })
