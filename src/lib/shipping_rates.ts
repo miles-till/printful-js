@@ -1,4 +1,4 @@
-//https://www.printful.com/docs/shipping
+//https://developers.printful.com/docs/#tag/Shipping-Rate-API
 
 import { APIFunctions, EmptyParameters } from '../types/functions';
 import { ShippingInfo, ShippingRequest } from '../types/shipping_rate';

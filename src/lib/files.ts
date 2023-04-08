@@ -1,4 +1,4 @@
-//https://www.printful.com/docs/files
+//https://developers.printful.com/docs/#tag/File-Library-API
 
 import { File, InputFile } from '../types/files';
 import { APIFunctions, EmptyParameters, IDParameter } from '../types/functions';

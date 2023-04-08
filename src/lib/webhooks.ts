@@ -1,4 +1,4 @@
-//https://www.printful.com/docs/webhooks
+//https://developers.printful.com/docs/#tag/Webhook-API
 
 import { APIFunctions, EmptyParameters } from '../types/functions';
 import { WebhookInfo } from '../types/webhooks';

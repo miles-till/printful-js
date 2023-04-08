@@ -1,4 +1,4 @@
-//https://www.printful.com/docs/tax
+//https://developers.printful.com/docs/#tag/Tax-Rate-API
 
 import { Country } from '../types/countries';
 import { APIFunctions, EmptyParameters } from '../types/functions';

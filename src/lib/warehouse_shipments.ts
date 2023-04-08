@@ -1,4 +1,4 @@
-//https://www.printful.com/docs/warehouse-shipments
+//https://developers.printful.com/docs/#tag/Warehouse-Shipments-API
 
 import { APIFunctions, EmptyParameters, IDParameter } from '../types/functions';
 import {

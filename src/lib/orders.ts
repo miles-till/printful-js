@@ -1,4 +1,4 @@
-//https://www.printful.com/docs/orders
+//https://developers.printful.com/docs/#tag/Orders-API
 import { APIFunctions, EmptyParameters, IDParameter } from '../types/functions';
 import { Order, OrderCosts, OrderInput } from '../types/orders';
 
@@ -12,7 +12,8 @@ type Status =
   | 'inprocess'
   | 'onhold'
   | 'partial'
-  | 'fulfilled';
+  | 'fulfilled'
+  | 'archived';
 
 type OrderID = IDParameter<number | string>;
 

@@ -1,4 +1,4 @@
-//https://www.printful.com/docs/files
+//https://developers.printful.com/docs/#tag/CountryState-Code-API
 
 import { Country } from '../types/countries';
 import { APIFunctions, EmptyParameters } from '../types/functions';

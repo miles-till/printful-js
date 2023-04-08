@@ -1,4 +1,4 @@
-//https://www.printful.com/docs/products
+//https://developers.printful.com/docs/#tag/Products-API
 import { ProductInfo, VariantInfo } from '../types/catalog';
 import { APIFunctions, EmptyParameters, IDParameter } from '../types/functions';
 import {

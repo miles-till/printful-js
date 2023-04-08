@@ -139,6 +139,7 @@ export const makeDelete =
       })
     );
   };
+
 export const asOptionalArgs =
   <R>(func: (args: Record<string, unknown>) => R) =>
   (parameters = {}) =>

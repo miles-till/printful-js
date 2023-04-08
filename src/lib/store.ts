@@ -1,4 +1,4 @@
-//https://www.printful.com/docs/store
+//https://developers.printful.com/docs/#tag/Store-Information-API
 
 import { APIFunctions, EmptyParameters } from '../types/functions';
 import { PackingSlip, StoreData } from '../types/store';
