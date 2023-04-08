@@ -135,3 +135,15 @@ export type CardInfo = {
   readonly number_mask: string;
   readonly expires: string;
 };
+
+export type Color = {
+  readonly color_name: string;
+  readonly color_codes: string[];
+};
+
+export type Placement = {
+  placement: string;
+  display_name: string;
+  technique_key: string;
+  technique_display_name: string;
+};

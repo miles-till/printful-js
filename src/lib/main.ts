@@ -9,6 +9,7 @@ import {
   getFileFunctions,
   getOrderFunctions,
   getProductFunctions,
+  getProductTemplateFunctions,
   getShippingRateFunctions,
   getStoreFunctions,
   getTaxFunctions,
@@ -46,6 +47,7 @@ Options) => {
   return {
     catalog: { ...getCatalogFunctions(apiFunctions) },
     products: { ...getProductFunctions(apiFunctions) },
+    productTemplates: { ...getProductTemplateFunctions(apiFunctions) },
     orders: { ...getOrderFunctions(apiFunctions) },
     files: { ...getFileFunctions(apiFunctions) },
     shipping: { ...getShippingRateFunctions(apiFunctions) },
