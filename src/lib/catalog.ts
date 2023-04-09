@@ -1,12 +1,23 @@
 //https://developers.printful.com/docs/#tag/Catalog-API
 
-import { Product, ProductInfo, VariantInfo } from '../types/catalog';
-import { APIFunctions, EmptyParameters, IDParameter } from '../types/functions';
+import {
+  CatalogGetProductsParameters,
+  Product,
+  ProductInfo,
+  VariantInfo,
+} from '../types/catalog';
+import { APIFunctions, IDParameter } from '../types/functions';
 
 const getCatalogFunctions = ({ get }: APIFunctions) => {
   return {
-    //Get all Product list
-    listProducts: get<readonly Product[], EmptyParameters>(() => `/products`),
+    /** Returns list of Products available in the Printful */
+    listProducts: get<readonly Product[], CatalogGetProductsParameters>(
+      ({ category_id }) => {
+        const path = `/products`;
+        if (category_id.length === 0) return path;
+        return `${path}?category_id=${category_id.join(',')}`;
+      }
+    ),
 
     //Get information about Variant
     getVariant: get<VariantInfo, IDParameter>(

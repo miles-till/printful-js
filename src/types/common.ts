@@ -1,7 +1,59 @@
 import { ProductVariant } from './product';
 
-export type FileType = { readonly temp: string };
-export type OptionType = { readonly temp: string };
+export type PropertyMap = {
+  [property_name: string]: any;
+};
+
+export type FileType = {
+  /**
+   * File type identifier - use this to specify a file's purpose when creating an order
+   *
+   * {@link https://developers.printful.com/docs/#section/Placements See examples}
+   */
+  readonly type: string;
+  /** Display name */
+  readonly title: string;
+  /** Additional price when this print file type is used */
+  readonly additional_price: string;
+  /** Additional options available to product files */
+  readonly options: CatalogFileOption[];
+};
+
+export type CatalogFileOption = {
+  /** File option identifier. Use this to specify which option you are adding to your file in a request. */
+  readonly id: string;
+  /** The type of the value property when using this option in a request. */
+  readonly type: string;
+  /**  */
+  readonly title: string;
+  /** Additional cost this will add to the item. */
+  readonly additional_price: string;
+};
+
+export type OptionType = {
+  /** Option identifier - use this to specify the option when creating an order */
+  readonly id: string;
+  /** Display name */
+  readonly title: string;
+  /** Data type of this option (currently only 'bool' is supported) */
+  readonly type: string;
+  /** Option values - [key, value] map */
+  readonly values: PropertyMap;
+  /** Additional price when this option is used */
+  readonly additional_price: string;
+  /** Additional price breakdown by type - [key, value] map */
+  readonly additional_price_breakdown: PropertyMap;
+};
+
+export type AvailableTechnique = {
+  /** The technique key to be used in the API */
+  readonly key: string;
+  /** The human-readable technique name */
+  readonly display_name: string;
+  /** Whether the technique is the default one */
+  readonly is_default: boolean;
+};
+
 export type AvailabilityStatus = { readonly temp: string };
 
 export type Timestamp = number;
@@ -142,8 +194,8 @@ export type Color = {
 };
 
 export type Placement = {
-  placement: string;
-  display_name: string;
-  technique_key: string;
-  technique_display_name: string;
+  readonly placement: string;
+  readonly display_name: string;
+  readonly technique_key: string;
+  readonly technique_display_name: string;
 };
