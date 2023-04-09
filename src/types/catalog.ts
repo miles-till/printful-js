@@ -3,11 +3,17 @@ import {
   AvailableTechnique,
   FileType,
   OptionType,
+  PropertyMap,
 } from './common';
 
 export type CatalogGetProductsParameters = {
   /** A comma-separated list of Category IDs of the Products that are to be returned */
   readonly category_id: number[];
+};
+
+export type CatalogGetVariantParameters = {
+  /** Variant id */
+  readonly id: number;
 };
 
 export type Product = {
@@ -52,22 +58,44 @@ export type Product = {
 };
 
 export type Variant = {
+  /** Variant ID, use this to specify the product when creating orders */
   readonly id: number;
+  /** ID of the product that this variant belongs to */
   readonly product_id: number;
+  /** Display name */
   readonly name: string;
+  /** Item size */
   readonly size: string;
+  /** Item color */
   readonly color: string;
+  /** Hexadecimal RGB color code. May not exactly reflect the real-world color */
   readonly color_code: string;
+  /** Secondary hexadecimal RGB color code. May not exactly reflect the real-world color */
   readonly color_code2: string;
+  /** URL of a preview image for this variant */
   readonly image: string;
+  /** Variant's price (can change depending on print files and optional settings) */
   readonly price: string;
+  /** Stock availability of this variant */
   readonly in_stock: boolean;
-  readonly availability_regions: readonly (readonly string[])[];
+  /** Map of [region code, region name] of regions where the variant is available for fulfillment */
+  readonly availability_regions: PropertyMap;
+  /** Detailed stock status per region */
   readonly availability_status: readonly AvailabilityStatus[];
+  /** A list of materials this Variant is composed of */
+  readonly material: Material[];
+};
+
+export type Material = {
+  /** Material name */
+  readonly name: string;
+  /** Percentage of the material in the product */
+  readonly percentage: number;
 };
 
 export type VariantInfo = {
   readonly variant: Variant;
+  /** Information about the Product that the Variant belongs to */
   readonly product: Product;
 };
 

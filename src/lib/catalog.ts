@@ -2,6 +2,7 @@
 
 import {
   CatalogGetProductsParameters,
+  CatalogGetVariantParameters,
   Product,
   ProductInfo,
   VariantInfo,
@@ -19,8 +20,8 @@ const getCatalogFunctions = ({ get }: APIFunctions) => {
       }
     ),
 
-    //Get information about Variant
-    getVariant: get<VariantInfo, IDParameter>(
+    /** Returns information about a specific Variant and its Product */
+    getVariant: get<VariantInfo, CatalogGetVariantParameters>(
       ({ id }) => `/products/variant/${id}`
     ),
 

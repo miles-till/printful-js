@@ -54,7 +54,12 @@ export type AvailableTechnique = {
   readonly is_default: boolean;
 };
 
-export type AvailabilityStatus = { readonly temp: string };
+export type AvailabilityStatus = {
+  /** Region code */
+  readonly region: string;
+  /** Stock status. Possible values include: 'in_stock' - available for fulfillment, 'stocked_on_demand' - available for fulfillment, 'discontinued' - permanently unavailable, 'out_of_stock' - temporarily unavailable */
+  readonly status: string;
+};
 
 export type Timestamp = number;
 
