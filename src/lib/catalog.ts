@@ -5,12 +5,13 @@ import {
   CatalogGetProductSizeGuideParameters,
   CatalogGetProductsParameters,
   CatalogGetVariantParameters,
+  Category,
   Product,
   ProductInfo,
   ProductSizeGuide,
   VariantInfo,
 } from '../types/catalog';
-import { APIFunctions } from '../types/functions';
+import { APIFunctions, EmptyParameters } from '../types/functions';
 
 const getCatalogFunctions = ({ get }: APIFunctions) => {
   return {
@@ -42,6 +43,9 @@ const getCatalogFunctions = ({ get }: APIFunctions) => {
       if (unit.length === 0) return path;
       return `${path}?unit=${unit.join(',')}`;
     }),
+
+    /** Returns list of Catalog Categories available in the Printful */
+    getCategories: get<Category[], EmptyParameters>(() => `/categories`),
   };
 };
 

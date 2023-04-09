@@ -149,3 +149,18 @@ export type SizeTableType =
   | 'measure_yourself'
   | 'product_measure'
   | 'international';
+
+export type Category = {
+  /** Category ID */
+  readonly id: number;
+  /** ID of the parent Category. If there is no parent Category, 0 is returned. */
+  readonly parent_id: number;
+  /** The URL of the Category image */
+  readonly image_url: string;
+  /** The size of the category image */
+  readonly size: CategoryImageSize;
+  /** Category title */
+  readonly title: string;
+};
+
+export type CategoryImageSize = 'small' | 'medium' | 'large';
