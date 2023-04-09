@@ -2,8 +2,10 @@ import {
   AvailabilityStatus,
   AvailableTechnique,
   FileType,
+  Measurement,
   OptionType,
   PropertyMap,
+  Unit,
 } from './common';
 
 export type CatalogGetProductsParameters = {
@@ -20,6 +22,15 @@ export type CatalogGetProductParameters = {
   /** Product id */
   readonly id: number;
 };
+
+export type CatalogGetProductSizeGuideParameters =
+  CatalogGetProductParameters & {
+    /**
+     * Example: unit=inches,cm
+     *
+     * A comma-separated list of measurement unit in which size tables are to be returned (inches or cm). The default value is  determined based on the locale country. The inches are used for United States, Liberia and Myanmar, for other countries the unit defaults to centimeters. */
+    readonly unit: Unit[];
+  };
 
 export type Product = {
   /** Product ID */
@@ -109,3 +120,32 @@ export type ProductInfo = {
   readonly product: Product;
   readonly variants: readonly Variant[];
 };
+
+export type ProductSizeGuide = {
+  /** Product ID */
+  readonly product_id: number;
+  /** The sizes available for the Product */
+  readonly available_sizes: string[];
+  /** Size tables for the product */
+  readonly size_tables: SizeTable[];
+};
+
+export type SizeTable = {
+  /** Size table type */
+  readonly type: SizeTableType;
+  /** The unit the size table values are in */
+  readonly unit: Unit;
+  /** The size table description (HTML) */
+  readonly description: string;
+  /** The URL of an image showing the measurements */
+  readonly image_url: string;
+  /** The description of the measurement image (HTML) */
+  readonly image_description: string;
+  /** The size table measurements */
+  readonly measurements: Measurement[];
+};
+
+export type SizeTableType =
+  | 'measure_yourself'
+  | 'product_measure'
+  | 'international';

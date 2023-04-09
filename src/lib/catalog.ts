@@ -2,10 +2,12 @@
 
 import {
   CatalogGetProductParameters,
+  CatalogGetProductSizeGuideParameters,
   CatalogGetProductsParameters,
   CatalogGetVariantParameters,
   Product,
   ProductInfo,
+  ProductSizeGuide,
   VariantInfo,
 } from '../types/catalog';
 import { APIFunctions } from '../types/functions';
@@ -30,6 +32,16 @@ const getCatalogFunctions = ({ get }: APIFunctions) => {
     getProduct: get<ProductInfo, CatalogGetProductParameters>(
       ({ id }) => `/products/${id}`
     ),
+
+    /** Returns information about the size guide for a specific product. */
+    getProductSizeGuide: get<
+      ProductSizeGuide,
+      CatalogGetProductSizeGuideParameters
+    >(({ id, unit }) => {
+      const path = `/products/${id}/sizes`;
+      if (unit.length === 0) return path;
+      return `${path}?unit=${unit.join(',')}`;
+    }),
   };
 };
 

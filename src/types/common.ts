@@ -54,6 +54,28 @@ export type AvailableTechnique = {
   readonly is_default: boolean;
 };
 
+export type Unit = 'inches' | 'cm';
+
+export type Measurement = {
+  /** Measurement type */
+  readonly type_label: string;
+  /** The measurement unit if it's not defined on the size table level or is different */
+  readonly unit: Unit;
+  /** The measurement values for each size */
+  readonly values: MeasurementValue[];
+};
+
+export type MeasurementValue = {
+  /** The size with which the value is associated */
+  readonly size: string;
+  /** The single value associated with a size (whether this or min_value and max_value will be present) */
+  readonly value: string;
+  /** The lower boundary of the value range (whether this and max_value or value will be present) */
+  readonly min_value: string;
+  /** The upper boundary of the value range (whether this and min_value or value will be present) */
+  readonly max_value: string;
+};
+
 export type AvailabilityStatus = {
   /** Region code */
   readonly region: string;
