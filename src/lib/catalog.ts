@@ -1,13 +1,14 @@
 //https://developers.printful.com/docs/#tag/Catalog-API
 
 import {
+  CatalogGetProductParameters,
   CatalogGetProductsParameters,
   CatalogGetVariantParameters,
   Product,
   ProductInfo,
   VariantInfo,
 } from '../types/catalog';
-import { APIFunctions, IDParameter } from '../types/functions';
+import { APIFunctions } from '../types/functions';
 
 const getCatalogFunctions = ({ get }: APIFunctions) => {
   return {
@@ -25,8 +26,8 @@ const getCatalogFunctions = ({ get }: APIFunctions) => {
       ({ id }) => `/products/variant/${id}`
     ),
 
-    //Get Product's Variant list
-    getProductVariants: get<ProductInfo, IDParameter>(
+    /** Returns information about a specific product and a list of variants for this product. */
+    getProduct: get<ProductInfo, CatalogGetProductParameters>(
       ({ id }) => `/products/${id}`
     ),
   };

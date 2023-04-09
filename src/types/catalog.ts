@@ -16,6 +16,11 @@ export type CatalogGetVariantParameters = {
   readonly id: number;
 };
 
+export type CatalogGetProductParameters = {
+  /** Product id */
+  readonly id: number;
+};
+
 export type Product = {
   /** Product ID */
   readonly id: number;
@@ -100,6 +105,7 @@ export type VariantInfo = {
 };
 
 export type ProductInfo = {
+  /** Information about the Product that the Variant belongs to */
   readonly product: Product;
   readonly variants: readonly Variant[];
 };

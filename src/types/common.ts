@@ -1,7 +1,7 @@
 import { ProductVariant } from './product';
 
 export type PropertyMap = {
-  [property_name: string]: any;
+  [property_name: string]: unknown;
 };
 
 export type FileType = {
