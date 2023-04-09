@@ -1,6 +1,7 @@
 //https://developers.printful.com/docs/#tag/Catalog-API
 
 import {
+  CatalogGetCategoryParameters,
   CatalogGetProductParameters,
   CatalogGetProductSizeGuideParameters,
   CatalogGetProductsParameters,
@@ -46,6 +47,11 @@ const getCatalogFunctions = ({ get }: APIFunctions) => {
 
     /** Returns list of Catalog Categories available in the Printful */
     getCategories: get<Category[], EmptyParameters>(() => `/categories`),
+
+    /** Returns list of Catalog Categories available in the Printful */
+    getCategory: get<Category, CatalogGetCategoryParameters>(
+      ({ id }) => `/categories/${id}`
+    ),
   };
 };
 

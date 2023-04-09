@@ -32,6 +32,11 @@ export type CatalogGetProductSizeGuideParameters =
     readonly unit: Unit[];
   };
 
+export type CatalogGetCategoryParameters = {
+  /** Category ID */
+  readonly id: number;
+};
+
 export type Product = {
   /** Product ID */
   readonly id: number;
