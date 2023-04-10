@@ -2,6 +2,7 @@
 import { ProductInfo, VariantInfo } from '../types/catalog';
 import { APIFunctions, EmptyParameters, IDParameter } from '../types/functions';
 import {
+  ProductsGetProductsGETParameters,
   PutRequestVariant,
   RequestProductBody,
   RequestProductResponse,
@@ -22,16 +23,11 @@ const getProductFunctions = ({
   del,
 }: APIFunctions) => {
   return {
-    //Get a list of Sync Products
+    /** Returns a list of Sync Product objects from your custom Printful store. */
     listProducts: list<
       readonly SyncProduct[],
       EmptyParameters,
-      Partial<{
-        readonly status: 'synced' | 'unsynced' | 'all';
-        readonly search: string;
-        readonly offset: number;
-        readonly limit: number;
-      }>
+      ProductsGetProductsGETParameters
     >(
       () => `/store/products`,
       (params) => [{}, params]

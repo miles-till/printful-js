@@ -1,5 +1,37 @@
 import { File, ItemOption, RequestFile } from './common';
+import { PagingGETParameters } from './functions';
 import { RequireOnly } from './util';
+
+/*
+ * Request parameters
+ */
+
+export type ProductsGetProductsGETParameters = Partial<
+  {
+    /** A comma-separated list of Category IDs of the Products that are to be returned */
+    readonly category_id: string;
+  } & PagingGETParameters
+>;
+
+export type RequestProductBody = {
+  readonly sync_product: RequestProduct;
+  readonly sync_variants: readonly RequestVariant[];
+};
+
+//PUT will always be partial, but probably still cleaner just do it all explicitly
+// so the functions themselves dont do any modifications to types
+export type PutRequestVariant = Partial<VariantFields>;
+
+export type PutRequestProduct = Partial<RequestProduct>;
+
+export type PutRequestProductBody = {
+  readonly sync_product: PutRequestProduct;
+  readonly sync_variants: readonly PutRequestVariant[];
+};
+
+/*
+ * Types
+ */
 
 export type SyncProduct = {
   readonly id: number;
@@ -82,23 +114,9 @@ export type RequestVariant = RequireOnly<
   'variant_id' | 'files'
 >;
 
-//PUT will always be partial, but probably still cleaner just do it all explicitly
-// so the functions themselves dont do any modifications to types
-export type PutRequestVariant = Partial<VariantFields>;
-
-export type PutRequestProduct = Partial<RequestProduct>;
-
-export type PutRequestProductBody = {
-  readonly sync_product: PutRequestProduct;
-  readonly sync_variants: readonly PutRequestVariant[];
-};
-
-export type RequestProductBody = {
-  readonly sync_product: RequestProduct;
-  readonly sync_variants: readonly RequestVariant[];
-};
-
 export type SyncVariantInfo = {
   readonly sync_variant: SyncVariant;
   readonly sync_product: SyncProduct;
 };
+
+export type SyncStatus = 'synced' | 'unsynced' | 'all';
