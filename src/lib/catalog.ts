@@ -20,7 +20,7 @@ const getCatalogFunctions = ({ get }: APIFunctions) => {
     listProducts: get<readonly Product[], CatalogGetProductsParameters>(
       ({ category_id }) => {
         const path = `/products`;
-        if (category_id.length === 0) return path;
+        if (category_id === undefined) return path;
         return `${path}?category_id=${category_id.join(',')}`;
       }
     ),

@@ -14,7 +14,7 @@ import {
 
 export type CatalogGetProductsParameters = {
   /** A comma-separated list of Category IDs of the Products that are to be returned */
-  readonly category_id: number[];
+  readonly category_id?: number[];
 };
 
 export type CatalogGetVariantParameters = {
