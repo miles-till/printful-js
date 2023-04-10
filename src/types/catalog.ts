@@ -8,6 +8,10 @@ import {
   Unit,
 } from './common';
 
+/*
+ * Request parameters
+ */
+
 export type CatalogGetProductsParameters = {
   /** A comma-separated list of Category IDs of the Products that are to be returned */
   readonly category_id: number[];
@@ -36,6 +40,10 @@ export type CatalogGetCategoryParameters = {
   /** Category ID */
   readonly id: number;
 };
+
+/*
+ * Types
+ */
 
 export type Product = {
   /** Product ID */
