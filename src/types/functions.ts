@@ -2,9 +2,19 @@ import { Response } from 'node-fetch';
 
 import { getAPIFunctions } from '../lib/functions';
 
-export type Paging = {
-  readonly total: number;
+export type PagingGETParameters = {
+  /** Current result set page offset */
   readonly offset: number;
+  /** Max number of items per page */
+  readonly limit: number;
+};
+
+export type Paging = {
+  /** Total number of items available */
+  readonly total: number;
+  /** Current result set page offset */
+  readonly offset: number;
+  /** Max number of items per page */
   readonly limit: number;
 };
 

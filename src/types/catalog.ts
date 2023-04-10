@@ -12,31 +12,35 @@ import {
  * Request parameters
  */
 
-export type CatalogGetProductsParameters = {
+export type CatalogGetProductsGETParameters = {
   /** A comma-separated list of Category IDs of the Products that are to be returned */
-  readonly category_id?: number[];
+  readonly category_id?: string;
 };
 
-export type CatalogGetVariantParameters = {
+export type CatalogGetVariantURLParameters = {
   /** Variant id */
   readonly id: number;
 };
 
-export type CatalogGetProductParameters = {
+export type CatalogGetProductURLParameters = {
   /** Product id */
   readonly id: number;
 };
 
-export type CatalogGetProductSizeGuideParameters =
-  CatalogGetProductParameters & {
-    /**
-     * Example: unit=inches,cm
-     *
-     * A comma-separated list of measurement unit in which size tables are to be returned (inches or cm). The default value is  determined based on the locale country. The inches are used for United States, Liberia and Myanmar, for other countries the unit defaults to centimeters. */
-    readonly unit: Unit[];
-  };
+export type CatalogGetProductSizeGuideURLParameters = {
+  /** Product id */
+  readonly id: number;
+};
 
-export type CatalogGetCategoryParameters = {
+export type CatalogGetProductSizeGuideGETParameters = {
+  /**
+   * Example: unit=inches,cm
+   *
+   * A comma-separated list of measurement unit in which size tables are to be returned (inches or cm). The default value is  determined based on the locale country. The inches are used for United States, Liberia and Myanmar, for other countries the unit defaults to centimeters. */
+  readonly unit: Unit;
+};
+
+export type CatalogGetCategoryURLParameters = {
   /** Category ID */
   readonly id: number;
 };

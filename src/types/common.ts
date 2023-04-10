@@ -54,7 +54,7 @@ export type AvailableTechnique = {
   readonly is_default: boolean;
 };
 
-export type Unit = 'inches' | 'cm';
+export type Unit = 'inches' | 'cm' | 'inches,cm';
 
 export type Measurement = {
   /** Measurement type */
