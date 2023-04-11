@@ -6,7 +6,6 @@ import {
   PutRequestSyncVariant,
   PostRequestProductBody,
   PostRequestSyncVariant,
-  RequestVariantResponse,
   SyncProduct,
   SyncProductInfo,
   SyncVariant,
@@ -97,9 +96,9 @@ const getProductFunctions = ({
       ({ id, ...putParams }) => [{ id }, putParams]
     ),
 
-    //Create a new Sync Variant
+    /** Creates a new Sync Variant for an existing Sync Product ({@link https://developers.printful.com/docs/#section/Products-API-examples/Create-a-new-Sync-Variant See examples}). */
     createVariant: create<
-      RequestVariantResponse,
+      SyncVariant,
       ProductID,
       { readonly body: PostRequestSyncVariant }
     >(

@@ -263,3 +263,5 @@ export type Placement = {
   readonly technique_key: string;
   readonly technique_display_name: string;
 };
+
+export type SyncStatus = 'synced' | 'unsynced' | 'all';

@@ -110,8 +110,6 @@ export type ProductVariant = {
   readonly name: string;
 };
 
-type ProductMiniInfo = ProductVariant;
-
 export type SyncVariant = {
   /** Sync Variant ID */
   readonly id: number;
@@ -148,20 +146,3 @@ export type SyncVariant = {
   /** Warehousing variant id. If sync variant is connected with a warehousing item, this is its id */
   readonly warehouse_product_variant_id: number;
 };
-
-export type RequestVariantResponse = {
-  readonly id: number;
-  readonly external_id: string;
-  readonly sync_product_id: number;
-  readonly name: string;
-  readonly synced: boolean;
-  readonly variant_id: number;
-  readonly retail_price: number;
-  readonly currency: string;
-  readonly is_ignored: boolean;
-  readonly product: ProductMiniInfo;
-  readonly files: readonly File[];
-  readonly options: readonly ItemOption[];
-};
-
-export type SyncStatus = 'synced' | 'unsynced' | 'all';
