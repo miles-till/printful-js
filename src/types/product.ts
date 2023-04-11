@@ -86,11 +86,6 @@ export type SyncProductInfo = {
   readonly sync_variants: readonly SyncVariant[];
 };
 
-export type SyncVariantInfo = {
-  readonly sync_variant: SyncVariant;
-  readonly sync_product: SyncProduct;
-};
-
 export type SyncProduct = {
   /** SyncProduct ID */
   readonly id: number;

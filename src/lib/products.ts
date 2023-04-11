@@ -10,7 +10,7 @@ import {
   RequestVariantResponse,
   SyncProduct,
   SyncProductInfo,
-  SyncVariantInfo,
+  SyncVariant,
 } from '../types/product';
 
 /** Sync Product ID (integer) or External ID (if prefixed with @) */
@@ -72,18 +72,8 @@ const getProductFunctions = ({
       ({ id, ...putParams }) => [{ id }, putParams]
     ),
 
-    //Create a new Sync Variant
-    createVariant: create<
-      RequestVariantResponse,
-      ProductID,
-      { readonly body: PostRequestSyncVariant }
-    >(
-      ({ id }) => `/store/products/${id}/variants`,
-      ({ id, ...putParams }) => [{ id }, putParams]
-    ),
-
-    //Get information about a single Sync Variant
-    getVariant: get<SyncVariantInfo, ProductID>(
+    /** Get information about a single Sync Variant. */
+    getVariant: get<SyncVariant, ProductID>(
       ({ id }) => `/store/variants/${id}`
     ),
 
@@ -99,6 +89,16 @@ const getProductFunctions = ({
       { readonly body: PutRequestSyncVariant }
     >(
       ({ id }) => `/store/variants/${id}`,
+      ({ id, ...putParams }) => [{ id }, putParams]
+    ),
+
+    //Create a new Sync Variant
+    createVariant: create<
+      RequestVariantResponse,
+      ProductID,
+      { readonly body: PostRequestSyncVariant }
+    >(
+      ({ id }) => `/store/products/${id}/variants`,
       ({ id, ...putParams }) => [{ id }, putParams]
     ),
   };
