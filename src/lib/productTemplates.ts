@@ -1,30 +1,33 @@
 //https://developers.printful.com/docs/#tag/Product-Templates-API
-import { APIFunctions, EmptyParameters, IDParameter } from '../types/functions';
+import {
+  APIFunctions,
+  EmptyParameters,
+  IDParameter,
+  PagingGETParameters,
+} from '../types/functions';
 import { ProductTemplate } from '../types/productTemplate';
 
+/** Template ID (integer) or External Product ID (if prefixed with @) */
 type ProductTemplateID = IDParameter<number | string>;
 
 const getProductTemplateFunctions = ({ get, list, del }: APIFunctions) => {
   return {
-    //Get a list of Product Templates
+    /** Returns a list of templates. */
     listProducts: list<
       readonly ProductTemplate[],
       EmptyParameters,
-      Partial<{
-        readonly offset: number;
-        readonly limit: number;
-      }>
+      PagingGETParameters
     >(
       () => `/product_templates`,
       (params) => [{}, params]
     ),
 
-    //Get information about a single Product Template
+    /** Get information about a single product template */
     getProduct: get<ProductTemplate, ProductTemplateID>(
       ({ id }) => `/product_templates/${id}`
     ),
 
-    //Delete a Product Template
+    /** Delete product template by ID or External Product ID */
     deleteProduct: del<ProductTemplate, ProductTemplateID>(
       ({ id }) => `/product_templates/${id}`
     ),

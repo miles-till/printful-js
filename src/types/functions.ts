@@ -2,12 +2,12 @@ import { Response } from 'node-fetch';
 
 import { getAPIFunctions } from '../lib/functions';
 
-export type PagingGETParameters = {
+export type PagingGETParameters = Partial<{
   /** Current result set page offset */
   readonly offset: number;
   /** Max number of items per page */
   readonly limit: number;
-};
+}>;
 
 export type Paging = {
   /** Total number of items available */
