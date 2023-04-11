@@ -81,9 +81,15 @@ const getProductFunctions = ({
       ({ id }) => `/store/variants/${id}`
     ),
 
-    //Modify a Sync Variant
+    /**
+     * Modifies an existing Sync Variant.
+     *
+     * Please note that in the request body you only need to specify the fields that need to be changed. See examples for more insights.
+     *
+     * {@link https://developers.printful.com/docs/#section/Products-API-examples/Modify-a-Sync-Variant See examples}
+     */
     modifyVariant: update<
-      RequestVariantResponse,
+      SyncVariant,
       ProductID,
       { readonly body: PutRequestSyncVariant }
     >(
