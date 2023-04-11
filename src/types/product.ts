@@ -14,7 +14,9 @@ export type ProductsGetProductsGETParameters = Partial<
 >;
 
 export type RequestProductBody = {
+  /** Information about the SyncProduct */
   readonly sync_product: RequestProduct;
+  /** Information about the Sync Variants */
   readonly sync_variants: readonly RequestVariant[];
 };
 
@@ -108,6 +110,7 @@ export type SyncVariant = {
   readonly warehouse_product_variant_id: number;
 };
 
+/** Information about the SyncProduct */
 export type RequestProductResponse = SyncProduct;
 
 export type RequestVariantResponse = {

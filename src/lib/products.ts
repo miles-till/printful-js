@@ -33,12 +33,7 @@ const getProductFunctions = ({
       (params) => [{}, params]
     ),
 
-    /** Get information about a single Sync Product and its Sync Variants. */
-    getProduct: get<SyncProductInfo, ProductID>(
-      ({ id }) => `/store/products/${id}`
-    ),
-
-    //Create a new Sync Product
+    /** Creates a new Sync Product together with its Sync Variants ({@link https://developers.printful.com/docs/#section/Products-API-examples/Create-a-new-Sync-Product See examples}). */
     createProduct: create<
       RequestProductResponse,
       EmptyParameters,
@@ -46,6 +41,11 @@ const getProductFunctions = ({
     >(
       () => `/store/products`,
       (params) => [{}, params]
+    ),
+
+    /** Get information about a single Sync Product and its Sync Variants. */
+    getProduct: get<SyncProductInfo, ProductID>(
+      ({ id }) => `/store/products/${id}`
     ),
 
     //Delete a Sync Product
