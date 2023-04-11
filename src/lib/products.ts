@@ -1,12 +1,12 @@
 //https://developers.printful.com/docs/#tag/Products-API
-import { ProductInfo, VariantInfo } from '../types/catalog';
+import { VariantInfo } from '../types/catalog';
 import { APIFunctions, EmptyParameters, IDParameter } from '../types/functions';
 import {
   ProductsGetProductsGETParameters,
-  PutRequestVariant,
-  RequestProductBody,
-  RequestProductResponse,
-  RequestVariant,
+  PutRequestProductBody,
+  PutRequestSyncVariant,
+  PostRequestProductBody,
+  PostRequestSyncVariant,
   RequestVariantResponse,
   SyncProduct,
   SyncProductInfo,
@@ -36,9 +36,9 @@ const getProductFunctions = ({
 
     /** Creates a new Sync Product together with its Sync Variants ({@link https://developers.printful.com/docs/#section/Products-API-examples/Create-a-new-Sync-Product See examples}). */
     createProduct: create<
-      RequestProductResponse,
+      SyncProduct,
       EmptyParameters,
-      { readonly body: RequestProductBody }
+      { readonly body: PostRequestProductBody }
     >(
       () => `/store/products`,
       (params) => [{}, params]
@@ -54,11 +54,19 @@ const getProductFunctions = ({
       ({ id }) => `/store/products/${id}`
     ),
 
-    //Modify a Sync Product
+    /**
+     * Modifies an existing Sync Product with its Sync Variants.
+     *
+     * Please note that in the request body you only need to specify the fields that need to be changed. Furthermore, if you want to update existing sync variants, then in the sync variants array you must specify the IDs of all existing sync variants. All omitted existing sync variants will be deleted. All new sync variants without an ID will be created. See examples for more insights.
+     *
+     * Rate limiting: Up to 10 requests per 60 seconds. A 60 seconds lockout is applied if request count is exceeded.
+     *
+     * {@link https://developers.printful.com/docs/#section/Products-API-examples/Modify-a-Sync-Product See examples}
+     */
     modifyProduct: update<
-      RequestProductResponse,
+      SyncProduct,
       ProductID,
-      { readonly body: RequestProductResponse }
+      { readonly body: PutRequestProductBody }
     >(
       ({ id }) => `/store/products/${id}`,
       ({ id, ...putParams }) => [{ id }, putParams]
@@ -68,7 +76,7 @@ const getProductFunctions = ({
     createVariant: create<
       RequestVariantResponse,
       ProductID,
-      { readonly body: RequestVariant }
+      { readonly body: PostRequestSyncVariant }
     >(
       ({ id }) => `/store/products/${id}/variants`,
       ({ id, ...putParams }) => [{ id }, putParams]
@@ -88,7 +96,7 @@ const getProductFunctions = ({
     modifyVariant: update<
       RequestVariantResponse,
       ProductID,
-      { readonly body: PutRequestVariant }
+      { readonly body: PutRequestSyncVariant }
     >(
       ({ id }) => `/store/variants/${id}`,
       ({ id, ...putParams }) => [{ id }, putParams]

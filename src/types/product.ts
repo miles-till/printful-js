@@ -13,22 +13,66 @@ export type ProductsGetProductsGETParameters = Partial<
   } & PagingGETParameters
 >;
 
-export type RequestProductBody = {
+export type PostRequestProductBody = {
   /** Information about the SyncProduct */
-  readonly sync_product: RequestProduct;
+  readonly sync_product: PostRequestSyncProduct;
   /** Information about the Sync Variants */
-  readonly sync_variants: readonly RequestVariant[];
+  readonly sync_variants: readonly PostRequestSyncVariant[];
 };
 
-//PUT will always be partial, but probably still cleaner just do it all explicitly
-// so the functions themselves dont do any modifications to types
-export type PutRequestVariant = Partial<VariantFields>;
+export type PostRequestSyncProduct = RequireOnly<RequestSyncProduct, 'name'>;
 
-export type PutRequestProduct = Partial<RequestProduct>;
+export type PostRequestSyncVariant = RequireOnly<
+  Omit<RequestSyncVariant, 'id'>,
+  'variant_id' | 'files'
+>;
 
 export type PutRequestProductBody = {
-  readonly sync_product: PutRequestProduct;
-  readonly sync_variants: readonly PutRequestVariant[];
+  /** Information about the SyncProduct */
+  readonly sync_product: PutRequestSyncProduct;
+  /** Information about the Sync Variants */
+  readonly sync_variants: readonly PutRequestSyncVariant[];
+};
+
+export type PutRequestSyncProduct = RequireOnly<RequestSyncProduct, 'name'>;
+
+export type PutRequestSyncVariant = RequireOnly<
+  RequestSyncVariant,
+  'variant_id' | 'files'
+>;
+
+export type RequestSyncProduct = {
+  /** Product ID from the Ecommerce platform */
+  readonly external_id: string;
+  /** Product name */
+  readonly name: string;
+  /**
+   * <= 250 characters
+   *
+   * Thumbnail image URL. Although we do not limit thumbnail image size, we recommend to keep it reasonably small.
+   */
+  readonly thumbnail: string;
+  /** Indicates if this Sync Product is ignored */
+  readonly is_ignored: boolean;
+};
+
+export type RequestSyncVariant = {
+  /** Sync Variant ID. Please specify the IDs of all Sync Variants you wish to keep. */
+  readonly id: number;
+  /** Variant ID from the Ecommerce platform */
+  readonly external_id: string;
+  /** Printful Variant ID that this Sync Variant is synced to */
+  readonly variant_id: number;
+  /** Retail price that this item is sold for */
+  readonly retail_price: number;
+  /** Indicates if this Sync Variant is ignored */
+  readonly is_ignored: boolean;
+  /** SKU of this Sync Variant */
+  readonly sku: string;
+  /** Array of attached printfiles / preview images */
+  readonly files: readonly RequestFile[];
+  /** Array of additional options for the configured product/variant {@link https://developers.printful.com/docs/#section/Options See examples} */
+  readonly options: readonly ItemOption[];
 };
 
 /*
@@ -110,9 +154,6 @@ export type SyncVariant = {
   readonly warehouse_product_variant_id: number;
 };
 
-/** Information about the SyncProduct */
-export type RequestProductResponse = SyncProduct;
-
 export type RequestVariantResponse = {
   readonly id: number;
   readonly external_id: string;
@@ -127,28 +168,5 @@ export type RequestVariantResponse = {
   readonly files: readonly File[];
   readonly options: readonly ItemOption[];
 };
-
-type RequestProduct = {
-  readonly external_id: string;
-  readonly name: string;
-  readonly thumbnail: string;
-  readonly is_ignored: boolean;
-};
-
-type VariantFields = {
-  readonly id: number;
-  readonly external_id: string;
-  readonly variant_id: number;
-  readonly retail_price: number;
-  readonly sku: string;
-  readonly is_ignored: boolean;
-  readonly files: readonly RequestFile[];
-  readonly options: readonly ItemOption[];
-};
-
-export type RequestVariant = RequireOnly<
-  Omit<VariantFields, 'id'>,
-  'variant_id' | 'files'
->;
 
 export type SyncStatus = 'synced' | 'unsynced' | 'all';
