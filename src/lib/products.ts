@@ -1,5 +1,4 @@
 //https://developers.printful.com/docs/#tag/Products-API
-import { VariantInfo } from '../types/catalog';
 import { APIFunctions, EmptyParameters, IDParameter } from '../types/functions';
 import {
   ProductsGetProductsGETParameters,
@@ -77,8 +76,8 @@ const getProductFunctions = ({
       ({ id }) => `/store/variants/${id}`
     ),
 
-    //Delete a Sync Variant
-    deleteVariant: get<VariantInfo, ProductID>(
+    /** Deletes a single Sync Variant. */
+    deleteVariant: del<SyncVariant, ProductID>(
       ({ id }) => `/store/variants/${id}`
     ),
 
