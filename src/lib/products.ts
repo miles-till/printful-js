@@ -13,6 +13,7 @@ import {
   SyncVariantInfo,
 } from '../types/product';
 
+/** Sync Product ID (integer) or External ID (if prefixed with @) */
 type ProductID = IDParameter<number | string>;
 
 const getProductFunctions = ({
@@ -48,8 +49,8 @@ const getProductFunctions = ({
       ({ id }) => `/store/products/${id}`
     ),
 
-    //Delete a Sync Product
-    deleteProduct: del<ProductInfo, ProductID>(
+    /** Deletes a Sync Product with all of its Sync Variants */
+    deleteProduct: del<SyncProductInfo, ProductID>(
       ({ id }) => `/store/products/${id}`
     ),
 
