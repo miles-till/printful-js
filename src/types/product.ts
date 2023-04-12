@@ -104,9 +104,13 @@ export type SyncProduct = {
 };
 
 export type ProductVariant = {
+  /** Variant ID */
   readonly variant_id: number;
+  /** Product ID of this variant */
   readonly product_id: number;
+  /** URL of a sample image for this variant */
   readonly image: string;
+  /** Display name of this variant */
   readonly name: string;
 };
 
