@@ -5,6 +5,8 @@ import {
   OrderCosts,
   OrderInput,
   OrdersGetOrdersGETParameters,
+  OrdersPostOrderPOSTParameters,
+  PostRequestOrderBody,
 } from '../types/orders';
 
 import { withQueryString } from './functions';
@@ -30,11 +32,11 @@ const getOrderFunctions = ({
       (params) => [{}, params]
     ),
 
-    //Create a new order
+    /** Creates a new order and optionally submits it for fulfillment ({@link https://developers.printful.com/docs/#section/Orders-API-examples See examples}) */
     createOrder: create<
       Order,
-      Partial<{ readonly confirm: boolean; readonly update_existing: boolean }>,
-      { readonly body: OrderInput }
+      OrdersPostOrderPOSTParameters,
+      PostRequestOrderBody
     >(
       (qsParams) => withQueryString(`/orders`, qsParams),
       ({ body, ...qsParams }) => [qsParams, { body }]

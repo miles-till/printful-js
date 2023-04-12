@@ -24,6 +24,17 @@ export type OrderInput = RequireOnly<
   'recipient' | 'items'
 >;
 
+export type OrdersPostOrderPOSTParameters = Partial<{
+  /** Automatically submit the newly created order for fulfillment (skip the Draft phase) */
+  readonly confirm: boolean;
+  /** Try to update existing order if an order with the specified external_id already exists */
+  readonly update_existing: boolean;
+}>;
+
+export type PostRequestOrderBody = {
+  readonly body: OrderInput;
+};
+
 /*
  * Types
  */
