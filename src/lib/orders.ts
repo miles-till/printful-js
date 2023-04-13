@@ -1,17 +1,16 @@
 //https://developers.printful.com/docs/#tag/Orders-API
-import { APIFunctions, EmptyParameters, IDParameter } from '../types/functions';
+import { APIFunctions, EmptyParameters } from '../types/functions';
 import {
   Order,
   OrderCosts,
+  OrderID,
   OrdersGetOrdersGETParameters,
   OrdersPostOrderPOSTParameters,
+  OrdersPutOrderPUTParameters,
   PostRequestOrderBody,
 } from '../types/orders';
 
 import { withQueryString } from './functions';
-
-/** Order ID (integer) or External ID (if prefixed with @) */
-type OrderID = IDParameter<number | string>;
 
 const getOrderFunctions = ({
   list,
@@ -47,6 +46,28 @@ const getOrderFunctions = ({
     /** Cancels pending order or draft. Charged amount is returned to the store owner's credit card. */
     cancelOrder: del<Order, OrderID>(({ id }) => `/orders/${id}`),
 
+    /**
+     * Updates unsubmitted order and optionally submits it for the fulfillment.
+     *
+     * Note that you need to post only the fields that need to be changed, not all required fields.
+     *
+     * If items array is given in the update data, the items will be:
+     *
+     * a) updated, if the update data contains the item id or external_id parameter that alreay exists
+     *
+     * b) deleted, if the request doesn't contain the item with previously existing id
+     *
+     * c) created as new if the id is not given or does not already exist
+     */
+    updateOrder: update<
+      Order,
+      OrdersPutOrderPUTParameters,
+      { readonly body: PostRequestOrderBody }
+    >(
+      ({ id, confirm }) => withQueryString(`orders/${id}`, { confirm }),
+      ({ body, ...urlParams }) => [urlParams, { body }]
+    ),
+
     //Estimate order costs (probably not create but its that kind of strict interface. we not showing that. if the server doesn't persist it, its its decision)
     estimateOrder: create<
       OrderCosts,
@@ -55,16 +76,6 @@ const getOrderFunctions = ({
     >(
       () => `/orders/estimate-costs`,
       (params) => [{}, params]
-    ),
-
-    //Update order data
-    updateOrder: update<
-      Order,
-      OrderID & { readonly confirm: boolean },
-      { readonly body: PostRequestOrderBody }
-    >(
-      ({ id, confirm }) => withQueryString(`orders/${id}`, { confirm }),
-      ({ body, ...urlParams }) => [urlParams, { body }]
     ),
 
     //Confirm draft for fulfillment

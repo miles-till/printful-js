@@ -1,5 +1,5 @@
 import { Address, Costs, IncompleteItem, Item, Timestamp } from './common';
-import { PagingGETParameters } from './functions';
+import { IDParameter, PagingGETParameters } from './functions';
 import { RequireOnly } from './util';
 
 /*
@@ -31,9 +31,17 @@ export type PostRequestOrderBody = RequireOnly<
   'recipient' | 'items'
 >;
 
+export type OrdersPutOrderPUTParameters = OrderID & {
+  /** Automatically submit the newly created order for fulfillment (skip the Draft phase) */
+  readonly confirm: boolean;
+};
+
 /*
  * Types
  */
+
+/** Order ID (integer) or External ID (if prefixed with @) */
+export type OrderID = IDParameter<number | string>;
 
 export type Order = {
   /** Order ID */
