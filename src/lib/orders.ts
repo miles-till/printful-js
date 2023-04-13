@@ -68,7 +68,13 @@ const getOrderFunctions = ({
       ({ body, ...urlParams }) => [urlParams, { body }]
     ),
 
-    //Estimate order costs (probably not create but its that kind of strict interface. we not showing that. if the server doesn't persist it, its its decision)
+    /** Approves for fulfillment an order that was saved as a draft. Store owner's credit card is charged when the order is submitted for fulfillment. */
+    confirmDraft: create<Order, OrderID, EmptyParameters>(
+      ({ id }) => `/orders/${id}/confirm`,
+      (params) => [params, {}]
+    ),
+
+    /** Calculates the estimated order costs including item costs, print costs (back prints, inside labels etc.), shipping and taxes */
     estimateOrder: create<
       OrderCosts,
       EmptyParameters,
@@ -76,12 +82,6 @@ const getOrderFunctions = ({
     >(
       () => `/orders/estimate-costs`,
       (params) => [{}, params]
-    ),
-
-    //Confirm draft for fulfillment
-    confirmDraft: create<Order, OrderID, EmptyParameters>(
-      ({ id }) => `/orders/${id}/confirm`,
-      (params) => [params, {}]
     ),
   };
 };

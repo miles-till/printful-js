@@ -219,6 +219,8 @@ type PackingSlip = {
 };
 
 export type OrderCosts = {
+  /** Order costs (Printful prices) */
   readonly costs: Costs;
-  readonly retail_costs: Costs;
+  /** Retail costs that are to be displayed on the packing slip for international shipments. Retail costs are used only if every item in order contains the `retail_price` attribute. */
+  readonly retail_costs: OrderRetailCosts;
 };
