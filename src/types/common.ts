@@ -1,3 +1,4 @@
+import { File } from './files';
 import { ProductVariant } from './product';
 
 export type PropertyMap = {
@@ -87,76 +88,10 @@ export type Timestamp = number;
 
 export type Primitive = string | number | boolean;
 
-export type File = {
-  /** Role of the file */
-  readonly type: string;
-  /** File ID */
-  readonly id: number;
-  /** Source URL where the file is downloaded from */
-  readonly url: string;
-  /**
-   * Array of additional options for this file
-   *
-   * {@link https://developers.printful.com/docs/#section/Options See examples}
-   */
-  readonly options: readonly FileOption[];
-  /** MD5 checksum of the file */
-  readonly hash: string;
-  /** File name */
-  readonly filename: string;
-  /** MIME type of the file */
-  readonly mime_type: string;
-  /** Size in bytes */
-  readonly size: number;
-  /** Width in pixels */
-  readonly width: number;
-  /** Height in pixels */
-  readonly height: number;
-  /**
-   * Resolution DPI.
-   *
-   * **Note:** for vector files this may be indicated as only 72dpi, but it doesn't affect print quality since the vector files are resolution independent.
-   */
-  readonly dpi: number;
-  /** File processing status:
-   *
-   * **ok** - file was processed successfuly
-   *
-   * **waiting** - file is being processed
-   *
-   * **failed** - file failed to be processed
-   */
-  readonly status: 'ok' | 'waiting' | 'failed';
-  /** File creation timestamp */
-  readonly created: Timestamp;
-  /** Small thumbnail URL */
-  readonly thumbnail_url: string;
-  /** Medium preview image URL */
-  readonly preview_url: string;
-  /** Show file in the Printfile Library (default true) */
-  readonly visible: boolean;
-  /** Whether it is a temporary printfile. */
-  readonly is_temporary: boolean;
-};
-
-export type RequestFile = {
-  readonly type: string;
-  readonly id: number;
-  readonly url: string;
-  readonly options: readonly FileOption[];
-};
-
 export type ValueType =
   | Primitive
   | Record<string, Primitive>
   | ReadonlyArray<Primitive>;
-
-export type FileOption = {
-  /** Option id */
-  readonly id: string;
-  /** Option value */
-  readonly value: ValueType;
-};
 
 export type ItemOption = {
   /** Option id */

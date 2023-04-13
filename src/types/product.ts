@@ -1,4 +1,5 @@
-import { File, ItemOption, RequestFile } from './common';
+import { ItemOption } from './common';
+import { File, FileOption } from './files';
 import { PagingGETParameters } from './functions';
 import { RequireOnly } from './util';
 
@@ -74,6 +75,11 @@ export type RequestSyncVariant = {
   /** Array of additional options for the configured product/variant {@link https://developers.printful.com/docs/#section/Options See examples} */
   readonly options: readonly ItemOption[];
 };
+
+type RequestFile = RequireOnly<
+  Pick<File, 'type' | 'url' | 'options' | 'filename' | 'visible'>,
+  'url'
+>;
 
 /*
  * Types
