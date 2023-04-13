@@ -3,7 +3,6 @@ import { APIFunctions, EmptyParameters, IDParameter } from '../types/functions';
 import {
   Order,
   OrderCosts,
-  OrderInput,
   OrdersGetOrdersGETParameters,
   OrdersPostOrderPOSTParameters,
   PostRequestOrderBody,
@@ -36,24 +35,24 @@ const getOrderFunctions = ({
     createOrder: create<
       Order,
       OrdersPostOrderPOSTParameters,
-      PostRequestOrderBody
+      { readonly body: PostRequestOrderBody }
     >(
       (qsParams) => withQueryString(`/orders`, qsParams),
       ({ body, ...qsParams }) => [qsParams, { body }]
     ),
 
+    /** Returns order data by ID or External ID. */
+    getOrderData: get<Order, OrderID>(({ id }) => `/orders/${id}`),
+
     //Estimate order costs (probably not create but its that kind of strict interface. we not showing that. if the server doesn't persist it, its its decision)
     estimateOrder: create<
       OrderCosts,
       EmptyParameters,
-      { readonly body: OrderInput }
+      { readonly body: PostRequestOrderBody }
     >(
       () => `/orders/estimate-costs`,
       (params) => [{}, params]
     ),
-
-    //Get order data
-    getOrderData: get<Order, OrderID>(({ id }) => `/orders/${id}`),
 
     //Cancel an order
     cancelOrder: del<Order, OrderID>(({ id }) => `/orders/${id}`),
@@ -62,7 +61,7 @@ const getOrderFunctions = ({
     updateOrder: update<
       Order,
       OrderID & { readonly confirm: boolean },
-      { readonly body: OrderInput }
+      { readonly body: PostRequestOrderBody }
     >(
       ({ id, confirm }) => withQueryString(`orders/${id}`, { confirm }),
       ({ body, ...urlParams }) => [urlParams, { body }]
