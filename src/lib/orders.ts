@@ -44,6 +44,9 @@ const getOrderFunctions = ({
     /** Returns order data by ID or External ID. */
     getOrderData: get<Order, OrderID>(({ id }) => `/orders/${id}`),
 
+    /** Cancels pending order or draft. Charged amount is returned to the store owner's credit card. */
+    cancelOrder: del<Order, OrderID>(({ id }) => `/orders/${id}`),
+
     //Estimate order costs (probably not create but its that kind of strict interface. we not showing that. if the server doesn't persist it, its its decision)
     estimateOrder: create<
       OrderCosts,
@@ -53,9 +56,6 @@ const getOrderFunctions = ({
       () => `/orders/estimate-costs`,
       (params) => [{}, params]
     ),
-
-    //Cancel an order
-    cancelOrder: del<Order, OrderID>(({ id }) => `/orders/${id}`),
 
     //Update order data
     updateOrder: update<
