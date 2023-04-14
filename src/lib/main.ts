@@ -17,6 +17,7 @@ import {
   getTaxFunctions,
   getWarehouseProductFunctions,
   getWebhookFunctions,
+  getReportsFunctions,
 } from './api';
 import { getFetch } from './fetch';
 import { getAPIFunctions } from './functions';
@@ -59,6 +60,7 @@ Options) => {
     store: { ...getStoreFunctions(apiFunctions) },
     mockup: { ...getMockupFunctions(apiFunctions) },
     warehouseProducts: { ...getWarehouseProductFunctions(apiFunctions) },
+    reports: { ...getReportsFunctions(apiFunctions) },
   };
 };
 
