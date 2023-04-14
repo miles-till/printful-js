@@ -1,34 +1,28 @@
 //https://developers.printful.com/docs/#tag/Warehouse-Products-API
 
 import { APIFunctions, EmptyParameters, IDParameter } from '../types/functions';
-import { WarehouseProduct } from '../types/warehouse_products';
+import {
+  GetRequestWarehouseProductsGETParameters,
+  WarehouseProduct,
+} from '../types/warehouse_products';
 
-const getWarehouseProductFunctions = ({ get, list, create }: APIFunctions) => {
+/** Product ID */
+type WarehouseProductID = IDParameter<number | string>;
+
+const getWarehouseProductFunctions = ({ get, list }: APIFunctions) => {
   return {
-    //Get a list of your warehouse products
-    //@see https://www.printful.com/docs/warehouse-products#actionCreate
+    /** Returns a list of warehouse products from your store */
     listWarehouseProducts: list<
       readonly WarehouseProduct[],
       EmptyParameters,
-      { readonly offset: number; readonly limit: number }
+      GetRequestWarehouseProductsGETParameters
     >(
       () => `/warehouse/products`,
       (params) => [{}, params]
     ),
 
-    //Create a new warehouse product
-    //terms_accepted doesn't seem to be sent? ignore for now
-    createWarehouseProduct: create<
-      WarehouseProduct,
-      EmptyParameters,
-      WarehouseProduct
-    >(
-      () => `/store/packing-slip`,
-      (params) => [{}, params]
-    ),
-
-    //Get warehouse product data
-    getWarehouseProduct: get<WarehouseProduct, IDParameter<number | string>>(
+    /** Returns warehouse product data by ID */
+    getWarehouseProduct: get<WarehouseProduct, WarehouseProductID>(
       ({ id }) => `/warehouse/products/${id}`
     ),
   };
