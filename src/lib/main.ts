@@ -8,6 +8,7 @@ import {
   getCountryFunctions,
   getEcommerceFunctions,
   getFileFunctions,
+  getMockupFunctions,
   getOrderFunctions,
   getProductFunctions,
   getProductTemplateFunctions,
@@ -57,6 +58,7 @@ Options) => {
     taxes: { ...getTaxFunctions(apiFunctions) },
     webhooks: { ...getWebhookFunctions(apiFunctions) },
     store: { ...getStoreFunctions(apiFunctions) },
+    mockup: { ...getMockupFunctions(apiFunctions) },
     warehouseProducts: { ...getWarehouseProductFunctions(apiFunctions) },
     warehouseShipments: { ...getWarehouseShipmentFunctions(apiFunctions) },
   };

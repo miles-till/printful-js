@@ -1,6 +1,5 @@
 import { File } from './files';
 import { ProductVariant } from './product';
-import { RequireOnly } from './util';
 
 export type PropertyMap = {
   [property_name: string]: unknown;

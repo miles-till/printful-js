@@ -9,5 +9,6 @@ export { default as getCountryFunctions } from './countries';
 export { default as getTaxFunctions } from './taxes';
 export { default as getWebhookFunctions } from './webhooks';
 export { default as getStoreFunctions } from './store';
+export { default as getMockupFunctions } from './mockup';
 export { default as getWarehouseProductFunctions } from './warehouse_products';
 export { default as getWarehouseShipmentFunctions } from './warehouse_shipments';
