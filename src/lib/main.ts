@@ -6,6 +6,7 @@ import { ErrorHandler } from '../types/functions';
 import {
   getCatalogFunctions,
   getCountryFunctions,
+  getEcommerceFunctions,
   getFileFunctions,
   getOrderFunctions,
   getProductFunctions,
@@ -47,6 +48,7 @@ Options) => {
   return {
     catalog: { ...getCatalogFunctions(apiFunctions) },
     products: { ...getProductFunctions(apiFunctions) },
+    ecommerce: { ...getEcommerceFunctions(apiFunctions) },
     productTemplates: { ...getProductTemplateFunctions(apiFunctions) },
     orders: { ...getOrderFunctions(apiFunctions) },
     files: { ...getFileFunctions(apiFunctions) },

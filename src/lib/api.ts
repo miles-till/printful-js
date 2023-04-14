@@ -1,5 +1,6 @@
 export { default as getCatalogFunctions } from './catalog';
 export { default as getProductFunctions } from './products';
+export { default as getEcommerceFunctions } from './ecommerce';
 export { default as getProductTemplateFunctions } from './productTemplates';
 export { default as getOrderFunctions } from './orders';
 export { default as getFileFunctions } from './files';
