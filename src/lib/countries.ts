@@ -3,11 +3,9 @@
 import { Country } from '../types/countries';
 import { APIFunctions, EmptyParameters } from '../types/functions';
 
-// type Status = string;
-
 const getCountryFunctions = ({ get }: APIFunctions) => {
   return {
-    //Retrieve country list
+    /** Returns list of countries and states that are accepted by the Printful. */
     getCountryList: get<readonly Country[], EmptyParameters>(
       () => `/countries`
     ),
