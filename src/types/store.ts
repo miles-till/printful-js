@@ -1,20 +1,39 @@
-import { Address, CardInfo, Timestamp } from './common';
+import { Address, CardInfo, PackingSlip, Timestamp } from './common';
+import { RequireOnly } from './util';
 
-export type PackingSlip = {
-  readonly email: string;
-  readonly phone: string;
-  readonly message: string;
+/*
+ * Request parameters
+ */
+
+export type PostRequestPackingSlipBody = StorePackingSlip;
+
+export type PostResponsePackingSlip = {
+  packing_slip: StorePackingSlip;
 };
 
+/*
+ * Types
+ */
+
+export type StorePackingSlip =
+  | EmailPackingSlip
+  | PhonePackingSlip
+  | MessagePackingSlip
+  | CustomOrderIdPackingSlip;
+
+type EmailPackingSlip = RequireOnly<PackingSlip, 'email'>;
+
+type PhonePackingSlip = RequireOnly<PackingSlip, 'phone'>;
+
+type MessagePackingSlip = RequireOnly<PackingSlip, 'message'>;
+
+type CustomOrderIdPackingSlip = RequireOnly<PackingSlip, 'custom_order_id'>;
+
 export type StoreData = {
+  /** Store ID */
   readonly id: number;
-  readonly name: string;
-  readonly website: string;
-  readonly return_address: Address;
-  readonly billing_address: Address;
-  readonly currency: string;
-  readonly payment_card: CardInfo;
-  readonly packing_slip: PackingSlip;
+  /** Store type */
   readonly type: string;
-  readonly created: Timestamp;
+  /** Store name */
+  readonly name: string;
 };

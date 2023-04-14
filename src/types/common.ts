@@ -1,5 +1,6 @@
 import { File } from './files';
 import { ProductVariant } from './product';
+import { RequireOnly } from './util';
 
 export type PropertyMap = {
   [property_name: string]: unknown;
@@ -227,3 +228,18 @@ export type Placement = {
 };
 
 export type SyncStatus = 'synced' | 'unsynced' | 'all';
+
+export type PackingSlip = {
+  /** Customer service email */
+  readonly email: string;
+  /** Customer service phone */
+  readonly phone: string;
+  /** Custom packing slip message */
+  readonly message: string;
+  /** URL address to a sticker we will put on a package */
+  readonly logo_url: string;
+  /** Store name override for the return address */
+  readonly store_name: string;
+  /** Your own Order ID that will be printed instead of Printful's Order ID */
+  readonly custom_order_id: string;
+};

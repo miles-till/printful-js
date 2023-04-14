@@ -1,4 +1,11 @@
-import { Address, Costs, IncompleteItem, Item, Timestamp } from './common';
+import {
+  Address,
+  Costs,
+  IncompleteItem,
+  Item,
+  PackingSlip,
+  Timestamp,
+} from './common';
 import { IDParameter, PagingGETParameters } from './functions';
 import { RequireOnly } from './util';
 
@@ -202,21 +209,6 @@ type PhonePackingSlip = RequireOnly<PackingSlip, 'phone'>;
 type MessagePackingSlip = RequireOnly<PackingSlip, 'message'>;
 
 type CustomOrderIdPackingSlip = RequireOnly<PackingSlip, 'custom_order_id'>;
-
-type PackingSlip = {
-  /** Customer service email */
-  readonly email: string;
-  /** Customer service phone */
-  readonly phone: string;
-  /** Custom packing slip message */
-  readonly message: string;
-  /** URL address to a sticker we will put on a package */
-  readonly logo_url: string;
-  /** Store name override for the return address */
-  readonly store_name: string;
-  /** Your own Order ID that will be printed instead of Printful's Order ID */
-  readonly custom_order_id: string;
-};
 
 export type OrderCosts = {
   /** Order costs (Printful prices) */
