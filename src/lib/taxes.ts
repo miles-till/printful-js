@@ -6,12 +6,12 @@ import { TaxInfo, TaxRequest } from '../types/tax_rate';
 
 const getTaxFunctions = ({ get, create }: APIFunctions) => {
   return {
-    //Retrieve state list that requires sales tax calculation
+    /** Retrieve state list that requires sales tax calculation */
     getStateTaxRates: get<readonly Country[], EmptyParameters>(
       () => `/tax/countries`
     ),
 
-    //Calculate tax rate
+    /** Calculates sales tax rate for given address if required */
     calculateTaxRate: create<
       TaxInfo,
       EmptyParameters,
