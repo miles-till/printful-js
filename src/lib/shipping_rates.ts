@@ -1,19 +1,17 @@
 //https://developers.printful.com/docs/#tag/Shipping-Rate-API
 
 import { APIFunctions, EmptyParameters } from '../types/functions';
-import { ShippingInfo, ShippingRequest } from '../types/shipping_rate';
-
-// type Status = string;
+import { ShippingInfo, PostRequestShippingBody } from '../types/shipping_rate';
 
 const getShippingRateFunctions = ({ create }: APIFunctions) => {
   return {
-    //Calculate shipping rates
+    /** Returns available shipping options and rates for the given list of products. */
     calculateRates: create<
       ShippingInfo,
       EmptyParameters,
-      { readonly body: ShippingRequest }
+      { readonly body: PostRequestShippingBody }
     >(
-      () => `/files`,
+      () => `/shipping/rates`,
       (params) => [{}, params]
     ),
   };
