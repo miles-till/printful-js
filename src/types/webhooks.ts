@@ -1,5 +1,17 @@
+import { PropertyMap } from './common';
+
+/*
+ * Request parameters
+ */
+
+/*
+ * Types
+ */
+
 export type WebhookInfo = {
+  /** Webhook URL that will receive store's event notifications */
   readonly url: string;
+  /** Array of enabled webhook event types */
   readonly types: readonly string[];
-  readonly params: ReadonlyArray<string | number | boolean>;
+  readonly params: PropertyMap;
 };
