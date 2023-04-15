@@ -18,6 +18,7 @@ import {
   getWarehouseProductFunctions,
   getWebhookFunctions,
   getReportsFunctions,
+  getApprovalSheetsFunctions,
 } from './api';
 import { getFetch } from './fetch';
 import { getAPIFunctions } from './functions';
@@ -61,6 +62,7 @@ Options) => {
     mockup: { ...getMockupFunctions(apiFunctions) },
     warehouseProducts: { ...getWarehouseProductFunctions(apiFunctions) },
     reports: { ...getReportsFunctions(apiFunctions) },
+    approvalSheets: { ...getApprovalSheetsFunctions(apiFunctions) },
   };
 };
 
