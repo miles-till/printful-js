@@ -15,7 +15,7 @@ import {
 /** Sync Product ID (integer) or External ID (if prefixed with @) */
 type ProductID = IDParameter<number | string>;
 
-const getProductsFunctions = ({
+export const getProductsFunctions = ({
   get,
   list,
   create,
@@ -108,5 +108,3 @@ const getProductsFunctions = ({
     ),
   };
 };
-
-export default getProductsFunctions;

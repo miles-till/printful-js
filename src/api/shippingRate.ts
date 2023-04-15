@@ -3,7 +3,7 @@
 import { APIFunctions, EmptyParameters } from '../types/functions';
 import { ShippingInfo, PostRequestShippingBody } from '../types/shippingRates';
 
-const getShippingRateFunctions = ({ create }: APIFunctions) => {
+export const getShippingRateFunctions = ({ create }: APIFunctions) => {
   return {
     /** Returns available shipping options and rates for the given list of products. */
     calculateRates: create<
@@ -16,5 +16,3 @@ const getShippingRateFunctions = ({ create }: APIFunctions) => {
     ),
   };
 };
-
-export default getShippingRateFunctions;

@@ -6,7 +6,7 @@ import {
   Statistics,
 } from '../types/reports';
 
-const getReportsFunctions = ({ list }: APIFunctions) => {
+export const getReportsFunctions = ({ list }: APIFunctions) => {
   return {
     /**
      * Returns statistics for specified report types.
@@ -25,5 +25,3 @@ const getReportsFunctions = ({ list }: APIFunctions) => {
     ),
   };
 };
-
-export default getReportsFunctions;

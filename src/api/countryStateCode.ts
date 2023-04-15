@@ -3,7 +3,7 @@
 import { Country } from '../types/countryStateCode';
 import { APIFunctions, EmptyParameters } from '../types/functions';
 
-const getCountryStateCodeFunctions = ({ get }: APIFunctions) => {
+export const getCountryStateCodeFunctions = ({ get }: APIFunctions) => {
   return {
     /** Returns list of countries and states that are accepted by the Printful. */
     getCountryList: get<readonly Country[], EmptyParameters>(
@@ -11,5 +11,3 @@ const getCountryStateCodeFunctions = ({ get }: APIFunctions) => {
     ),
   };
 };
-
-export default getCountryStateCodeFunctions;

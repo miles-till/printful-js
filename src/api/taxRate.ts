@@ -4,7 +4,7 @@ import { Country } from '../types/countryStateCode';
 import { APIFunctions, EmptyParameters } from '../types/functions';
 import { TaxInfo, TaxRequest } from '../types/taxRate';
 
-const getTaxRateFunctions = ({ get, create }: APIFunctions) => {
+export const getTaxRateFunctions = ({ get, create }: APIFunctions) => {
   return {
     /** Retrieve state list that requires sales tax calculation */
     getStateTaxRates: get<readonly Country[], EmptyParameters>(
@@ -22,5 +22,3 @@ const getTaxRateFunctions = ({ get, create }: APIFunctions) => {
     ),
   };
 };
-
-export default getTaxRateFunctions;

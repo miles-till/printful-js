@@ -1,4 +1,5 @@
 //https://developers.printful.com/docs/#tag/Catalog-API
+
 import {
   CatalogGetCategoryURLParameters,
   CatalogGetProductSizeGuideGETParameters,
@@ -14,7 +15,7 @@ import {
 } from '../types/catalog';
 import { APIFunctions, EmptyParameters } from '../types/functions';
 
-const getCatalogFunctions = ({ get, list }: APIFunctions) => {
+export const getCatalogFunctions = ({ get, list }: APIFunctions) => {
   return {
     /** Returns list of Products available in the Printful */
     listProducts: list<
@@ -55,5 +56,3 @@ const getCatalogFunctions = ({ get, list }: APIFunctions) => {
     ),
   };
 };
-
-export default getCatalogFunctions;

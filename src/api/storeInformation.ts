@@ -11,7 +11,7 @@ import {
   StoreData,
 } from '../types/storeInformation';
 
-const getStoreInformationFunctions = ({ get, create }: APIFunctions) => {
+export const getStoreInformationFunctions = ({ get, create }: APIFunctions) => {
   return {
     /** Modifies packing slip information of the currently authorized Printful store. */
     modifyPackingSlip: create<
@@ -30,5 +30,3 @@ const getStoreInformationFunctions = ({ get, create }: APIFunctions) => {
     getStoreInfo: get<StoreData, EmptyParameters>(() => `/store`),
   };
 };
-
-export default getStoreInformationFunctions;

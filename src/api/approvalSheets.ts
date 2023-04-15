@@ -10,7 +10,7 @@ import {
 } from '../types/approvalSheets';
 import { APIFunctions, EmptyParameters } from '../types/functions';
 
-const getApprovalSheetsFunctions = ({ get, create }: APIFunctions) => {
+export const getApprovalSheetsFunctions = ({ get, create }: APIFunctions) => {
   return {
     /** Retrieve a list of approval sheets confirming suggested changes to files of on hold orders. */
     listApprovalSheets: get<readonly ApprovalSheet[], EmptyParameters>(
@@ -40,5 +40,3 @@ const getApprovalSheetsFunctions = ({ get, create }: APIFunctions) => {
     ),
   };
 };
-
-export default getApprovalSheetsFunctions;

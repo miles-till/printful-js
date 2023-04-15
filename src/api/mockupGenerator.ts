@@ -10,7 +10,7 @@ import {
   ProductTemplate,
 } from '../types/mockupGenerator';
 
-const getMockupGeneratorFunctions = ({ list, create }: APIFunctions) => {
+export const getMockupGeneratorFunctions = ({ list, create }: APIFunctions) => {
   return {
     /**
      * Creates an asynchronous mockup generation task. Generation result can be retrieved using mockup generation task retrieval endpoint.
@@ -65,5 +65,3 @@ const getMockupGeneratorFunctions = ({ list, create }: APIFunctions) => {
     ),
   };
 };
-
-export default getMockupGeneratorFunctions;

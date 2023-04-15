@@ -3,23 +3,7 @@ import { RequestInit } from 'node-fetch';
 
 import { ErrorHandler } from '../types/functions';
 
-import {
-  getCatalogFunctions,
-  getCountryStateCodeFunctions,
-  getEcommercePlatformSyncFunctions,
-  getFileLibraryFunctions,
-  getMockupGeneratorFunctions,
-  getOrdersFunctions,
-  getProductsFunctions,
-  getProductTemplatesFunctions,
-  getShippingRateFunctions,
-  getStoreInformationFunctions,
-  getTaxRateFunctions,
-  getWarehouseProductsFunctions,
-  getWebhookFunctions,
-  getReportsFunctions,
-  getApprovalSheetsFunctions,
-} from '../api';
+import * as api from '../api';
 import { getFetch } from './fetch';
 import { getAPIFunctions } from './functions';
 
@@ -48,21 +32,21 @@ Options) => {
   const fetch = getFetch(baseUrl, { ...requestInit, ...fetchConfig });
   const apiFunctions = getAPIFunctions(fetch);
   return {
-    catalog: { ...getCatalogFunctions(apiFunctions) },
-    products: { ...getProductsFunctions(apiFunctions) },
-    ecommerce: { ...getEcommercePlatformSyncFunctions(apiFunctions) },
-    productTemplates: { ...getProductTemplatesFunctions(apiFunctions) },
-    orders: { ...getOrdersFunctions(apiFunctions) },
-    files: { ...getFileLibraryFunctions(apiFunctions) },
-    shipping: { ...getShippingRateFunctions(apiFunctions) },
-    countries: { ...getCountryStateCodeFunctions(apiFunctions) },
-    taxes: { ...getTaxRateFunctions(apiFunctions) },
-    webhooks: { ...getWebhookFunctions(apiFunctions) },
-    store: { ...getStoreInformationFunctions(apiFunctions) },
-    mockup: { ...getMockupGeneratorFunctions(apiFunctions) },
-    warehouseProducts: { ...getWarehouseProductsFunctions(apiFunctions) },
-    reports: { ...getReportsFunctions(apiFunctions) },
-    approvalSheets: { ...getApprovalSheetsFunctions(apiFunctions) },
+    catalog: { ...api.getCatalogFunctions(apiFunctions) },
+    products: { ...api.getProductsFunctions(apiFunctions) },
+    ecommerce: { ...api.getEcommercePlatformSyncFunctions(apiFunctions) },
+    productTemplates: { ...api.getProductTemplatesFunctions(apiFunctions) },
+    orders: { ...api.getOrdersFunctions(apiFunctions) },
+    files: { ...api.getFileLibraryFunctions(apiFunctions) },
+    shipping: { ...api.getShippingRateFunctions(apiFunctions) },
+    countries: { ...api.getCountryStateCodeFunctions(apiFunctions) },
+    taxes: { ...api.getTaxRateFunctions(apiFunctions) },
+    webhooks: { ...api.getWebhookFunctions(apiFunctions) },
+    store: { ...api.getStoreInformationFunctions(apiFunctions) },
+    mockup: { ...api.getMockupGeneratorFunctions(apiFunctions) },
+    warehouseProducts: { ...api.getWarehouseProductsFunctions(apiFunctions) },
+    reports: { ...api.getReportsFunctions(apiFunctions) },
+    approvalSheets: { ...api.getApprovalSheetsFunctions(apiFunctions) },
   };
 };
 

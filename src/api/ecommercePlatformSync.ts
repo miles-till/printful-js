@@ -11,7 +11,7 @@ import {
 /** Sync Product ID (integer) or External ID (if prefixed with @) */
 type ProductID = IDParameter<number | string>;
 
-const getEcommercePlatformSyncFunctions = ({
+export const getEcommercePlatformSyncFunctions = ({
   get,
   list,
   update,
@@ -65,5 +65,3 @@ const getEcommercePlatformSyncFunctions = ({
     ),
   };
 };
-
-export default getEcommercePlatformSyncFunctions;

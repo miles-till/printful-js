@@ -9,7 +9,7 @@ import {
 /** Product ID */
 type WarehouseProductID = IDParameter<number | string>;
 
-const getWarehouseProductsFunctions = ({ get, list }: APIFunctions) => {
+export const getWarehouseProductsFunctions = ({ get, list }: APIFunctions) => {
   return {
     /** Returns a list of warehouse products from your store */
     listWarehouseProducts: list<
@@ -27,5 +27,3 @@ const getWarehouseProductsFunctions = ({ get, list }: APIFunctions) => {
     ),
   };
 };
-
-export default getWarehouseProductsFunctions;

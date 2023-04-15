@@ -3,7 +3,7 @@
 import { APIFunctions, EmptyParameters } from '../types/functions';
 import { WebhookInfo } from '../types/webhook';
 
-const getWebhookFunctions = ({ get, create, del }: APIFunctions) => {
+export const getWebhookFunctions = ({ get, create, del }: APIFunctions) => {
   return {
     /** Returns configured webhook URL and list of webhook event types enabled for the store */
     getWebhookConfig: get<WebhookInfo, EmptyParameters>(() => `/webhooks`),
@@ -34,5 +34,3 @@ const getWebhookFunctions = ({ get, create, del }: APIFunctions) => {
     disableWebhookSupport: del<WebhookInfo, EmptyParameters>(() => `/webhooks`),
   };
 };
-
-export default getWebhookFunctions;

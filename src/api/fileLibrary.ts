@@ -8,7 +8,7 @@ import {
 } from '../types/fileLibrary';
 import { APIFunctions, EmptyParameters, IDParameter } from '../types/functions';
 
-const getFileLibraryFunctions = ({ create, get }: APIFunctions) => {
+export const getFileLibraryFunctions = ({ create, get }: APIFunctions) => {
   return {
     /**
      * Adds a new File to the library by providing URL of the file.
@@ -46,5 +46,3 @@ const getFileLibraryFunctions = ({ create, get }: APIFunctions) => {
     ),
   };
 };
-
-export default getFileLibraryFunctions;

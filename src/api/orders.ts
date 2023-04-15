@@ -12,7 +12,7 @@ import {
 } from '../types/orders';
 import { withQueryString } from '../lib/functions';
 
-const getOrdersFunctions = ({
+export const getOrdersFunctions = ({
   list,
   create,
   get,
@@ -85,5 +85,3 @@ const getOrdersFunctions = ({
     ),
   };
 };
-
-export default getOrdersFunctions;
