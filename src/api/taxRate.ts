@@ -1,10 +1,10 @@
 //https://developers.printful.com/docs/#tag/Tax-Rate-API
 
-import { Country } from '../types/countries';
+import { Country } from '../types/countryStateCode';
 import { APIFunctions, EmptyParameters } from '../types/functions';
-import { TaxInfo, TaxRequest } from '../types/tax_rate';
+import { TaxInfo, TaxRequest } from '../types/taxRate';
 
-const getTaxFunctions = ({ get, create }: APIFunctions) => {
+const getTaxRateFunctions = ({ get, create }: APIFunctions) => {
   return {
     /** Retrieve state list that requires sales tax calculation */
     getStateTaxRates: get<readonly Country[], EmptyParameters>(
@@ -23,4 +23,4 @@ const getTaxFunctions = ({ get, create }: APIFunctions) => {
   };
 };
 
-export default getTaxFunctions;
+export default getTaxRateFunctions;

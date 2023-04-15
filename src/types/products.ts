@@ -1,5 +1,5 @@
 import { ItemOption } from './common';
-import { File, FileOption } from './files';
+import { File } from './fileLibrary';
 import { PagingGETParameters } from './functions';
 import { RequireOnly } from './util';
 

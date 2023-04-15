@@ -4,12 +4,12 @@ import { APIFunctions, EmptyParameters, IDParameter } from '../types/functions';
 import {
   GetRequestWarehouseProductsGETParameters,
   WarehouseProduct,
-} from '../types/warehouse_products';
+} from '../types/warehouseProducts';
 
 /** Product ID */
 type WarehouseProductID = IDParameter<number | string>;
 
-const getWarehouseProductFunctions = ({ get, list }: APIFunctions) => {
+const getWarehouseProductsFunctions = ({ get, list }: APIFunctions) => {
   return {
     /** Returns a list of warehouse products from your store */
     listWarehouseProducts: list<
@@ -28,4 +28,4 @@ const getWarehouseProductFunctions = ({ get, list }: APIFunctions) => {
   };
 };
 
-export default getWarehouseProductFunctions;
+export default getWarehouseProductsFunctions;

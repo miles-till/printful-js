@@ -1,17 +1,22 @@
 //https://developers.printful.com/docs/#tag/Ecommerce-Platform-Sync-API
 import { APIFunctions, EmptyParameters, IDParameter } from '../types/functions';
-import { EcommerceGetProductsGETParameters } from '../types/ecommerce';
+import { EcommerceGetProductsGETParameters } from '../types/ecommercePlatformSync';
 import {
   PutRequestSyncVariant,
   SyncProduct,
   SyncProductInfo,
   SyncVariant,
-} from '../types/product';
+} from '../types/products';
 
 /** Sync Product ID (integer) or External ID (if prefixed with @) */
 type ProductID = IDParameter<number | string>;
 
-const getEcommerceFunctions = ({ get, list, update, del }: APIFunctions) => {
+const getEcommercePlatformSyncFunctions = ({
+  get,
+  list,
+  update,
+  del,
+}: APIFunctions) => {
   return {
     /** Returns list of Sync Product objects from your store. */
     listProducts: list<
@@ -61,4 +66,4 @@ const getEcommerceFunctions = ({ get, list, update, del }: APIFunctions) => {
   };
 };
 
-export default getEcommerceFunctions;
+export default getEcommercePlatformSyncFunctions;

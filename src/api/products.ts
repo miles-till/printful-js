@@ -1,4 +1,5 @@
 //https://developers.printful.com/docs/#tag/Products-API
+
 import { APIFunctions, EmptyParameters, IDParameter } from '../types/functions';
 import {
   ProductsGetProductsGETParameters,
@@ -9,12 +10,12 @@ import {
   SyncProduct,
   SyncProductInfo,
   SyncVariant,
-} from '../types/product';
+} from '../types/products';
 
 /** Sync Product ID (integer) or External ID (if prefixed with @) */
 type ProductID = IDParameter<number | string>;
 
-const getProductFunctions = ({
+const getProductsFunctions = ({
   get,
   list,
   create,
@@ -108,4 +109,4 @@ const getProductFunctions = ({
   };
 };
 
-export default getProductFunctions;
+export default getProductsFunctions;

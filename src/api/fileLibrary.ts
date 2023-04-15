@@ -5,10 +5,10 @@ import {
   PostRequestAvailableThreadColorsBody,
   PostRequestFileBody,
   ThreadColors,
-} from '../types/files';
+} from '../types/fileLibrary';
 import { APIFunctions, EmptyParameters, IDParameter } from '../types/functions';
 
-const getFileFunctions = ({ create, get }: APIFunctions) => {
+const getFileLibraryFunctions = ({ create, get }: APIFunctions) => {
   return {
     /**
      * Adds a new File to the library by providing URL of the file.
@@ -47,4 +47,4 @@ const getFileFunctions = ({ create, get }: APIFunctions) => {
   };
 };
 
-export default getFileFunctions;
+export default getFileLibraryFunctions;

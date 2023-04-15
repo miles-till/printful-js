@@ -1,9 +1,9 @@
 //https://developers.printful.com/docs/#tag/CountryState-Code-API
 
-import { Country } from '../types/countries';
+import { Country } from '../types/countryStateCode';
 import { APIFunctions, EmptyParameters } from '../types/functions';
 
-const getCountryFunctions = ({ get }: APIFunctions) => {
+const getCountryStateCodeFunctions = ({ get }: APIFunctions) => {
   return {
     /** Returns list of countries and states that are accepted by the Printful. */
     getCountryList: get<readonly Country[], EmptyParameters>(
@@ -12,4 +12,4 @@ const getCountryFunctions = ({ get }: APIFunctions) => {
   };
 };
 
-export default getCountryFunctions;
+export default getCountryStateCodeFunctions;

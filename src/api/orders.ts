@@ -1,4 +1,5 @@
 //https://developers.printful.com/docs/#tag/Orders-API
+
 import { APIFunctions, EmptyParameters } from '../types/functions';
 import {
   Order,
@@ -9,10 +10,9 @@ import {
   OrdersPutOrderPUTParameters,
   PostRequestOrderBody,
 } from '../types/orders';
+import { withQueryString } from '../lib/functions';
 
-import { withQueryString } from './functions';
-
-const getOrderFunctions = ({
+const getOrdersFunctions = ({
   list,
   create,
   get,
@@ -86,4 +86,4 @@ const getOrderFunctions = ({
   };
 };
 
-export default getOrderFunctions;
+export default getOrdersFunctions;

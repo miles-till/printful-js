@@ -8,9 +8,9 @@ import {
   PrintfileInfo,
   GetRequestGenerationTaskGETParameters,
   ProductTemplate,
-} from '../types/mockup';
+} from '../types/mockupGenerator';
 
-const getMockupFunctions = ({ list, create }: APIFunctions) => {
+const getMockupGeneratorFunctions = ({ list, create }: APIFunctions) => {
   return {
     /**
      * Creates an asynchronous mockup generation task. Generation result can be retrieved using mockup generation task retrieval endpoint.
@@ -66,4 +66,4 @@ const getMockupFunctions = ({ list, create }: APIFunctions) => {
   };
 };
 
-export default getMockupFunctions;
+export default getMockupGeneratorFunctions;

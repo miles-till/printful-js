@@ -9,9 +9,9 @@ import {
   PostRequestPackingSlipBody,
   PostResponsePackingSlip,
   StoreData,
-} from '../types/store';
+} from '../types/storeInformation';
 
-const getStoreFunctions = ({ get, create }: APIFunctions) => {
+const getStoreInformationFunctions = ({ get, create }: APIFunctions) => {
   return {
     /** Modifies packing slip information of the currently authorized Printful store. */
     modifyPackingSlip: create<
@@ -31,4 +31,4 @@ const getStoreFunctions = ({ get, create }: APIFunctions) => {
   };
 };
 
-export default getStoreFunctions;
+export default getStoreInformationFunctions;

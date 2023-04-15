@@ -1,5 +1,5 @@
-import { File } from './files';
-import { ProductVariant } from './product';
+import { File } from './fileLibrary';
+import { ProductVariant } from './products';
 
 export type PropertyMap = {
   [property_name: string]: unknown;
