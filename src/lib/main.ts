@@ -19,7 +19,7 @@ import {
   getWebhookFunctions,
   getReportsFunctions,
   getApprovalSheetsFunctions,
-} from './api';
+} from '../api';
 import { getFetch } from './fetch';
 import { getAPIFunctions } from './functions';
 
