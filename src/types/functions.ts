@@ -20,6 +20,12 @@ export type Paging = {
 
 type BaseParameters = Record<string, unknown> | ReadonlyArray<unknown>;
 
+export type UrlParameters = BaseParameters;
+export type QueryParameters =
+  | Record<string, string | number | boolean>
+  | undefined;
+export type RequestBody = BaseParameters;
+
 export type URLParameters = BaseParameters;
 export type POSTParameters = BaseParameters;
 export type GETParameters = Record<string, string | number | boolean>;
@@ -38,6 +44,7 @@ export type DefaultErrorResponse = {
 export type SuccessResponse<R> = {
   readonly code: number;
   readonly result: R;
+  readonly paging?: Paging;
 };
 
 export type APIListResponse<R> =

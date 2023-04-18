@@ -3,18 +3,21 @@ import { Response } from 'node-fetch';
 import {
   APIResponse,
   DefaultErrorResponse,
+  EmptyParameters,
   GetEndpoint,
   GETParameters,
-  Paging,
   POSTParameters,
   PUTParameters,
+  QueryParameters,
+  RequestBody,
   ResolveParameters,
   Result,
   SuccessResponse,
+  UrlParameters,
   URLParameters,
 } from '../types/functions';
 
-import { Fetch } from './fetch';
+import type { Fetch } from './fetch';
 import { ratelimited } from './ratelimit';
 
 const getQueryString = <P extends GETParameters>(parameters: P): string =>
@@ -33,18 +36,34 @@ export const withQueryString = <P extends GETParameters>(
   return `${endpoint}${qs ? `?${qs}` : ''}`;
 };
 
-export const makeGet =
-  (fetch: Fetch) =>
-  <R extends Result, U extends URLParameters>(getEndpoint: GetEndpoint<U>) =>
-  async (URLParameters: U) => {
-    return getProcessedResponse<SuccessResponse<R>>(() =>
-      fetch(getEndpoint(URLParameters), {
-        method: 'GET',
+const makeRequest =
+  (fetch: Fetch, method: string) =>
+  <
+    TResult,
+    TUrlParameters extends UrlParameters = EmptyParameters,
+    TQueryParameters extends QueryParameters = undefined,
+    TRequestBody extends RequestBody = EmptyParameters
+  >(
+    getEndpoint: GetEndpoint<TUrlParameters>
+  ) =>
+  async (
+    parameters: TUrlParameters & {
+      query?: TQueryParameters;
+      body?: TRequestBody;
+    }
+  ) => {
+    const urlParams = parameters ?? ({} as TUrlParameters);
+    const queryParams = parameters?.query;
+    const bodyParams = parameters?.body;
+    const endpoint = withQueryString(getEndpoint(urlParams), queryParams ?? {});
+    return getProcessedResponse<SuccessResponse<TResult>>(() =>
+      fetch(endpoint, {
+        method: method,
+        body: bodyParams,
       })
     );
   };
 
-//list does not need URL and GET parameters, its the same really.
 export const makeList =
   (fetch: Fetch) =>
   <R extends Result, U extends URLParameters, P extends GETParameters>(
@@ -54,9 +73,7 @@ export const makeList =
   async (parameters: U & P) => {
     const [URLParameters, queryParams] = getParameters(parameters);
     const qs = getQueryString(queryParams);
-    return getProcessedResponse<
-      SuccessResponse<R> & { readonly paging: Paging }
-    >(() =>
+    return getProcessedResponse<SuccessResponse<R>>(() =>
       fetch(`${getEndpoint(URLParameters)}${qs ? `?${qs}` : ''}`, {
         method: 'GET',
       })
@@ -146,7 +163,7 @@ export const asOptionalArgs =
     func(parameters);
 
 export const getAPIFunctions = (fetch: Fetch) => ({
-  get: makeGet(fetch),
+  get: makeRequest(fetch, 'GET'),
   list: makeList(fetch),
   create: makeCreate(fetch),
   update: makeUpdate(fetch),
