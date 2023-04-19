@@ -17,31 +17,25 @@ type ProductID = IDParameter<number | string>;
 
 export const getProductsFunctions = ({
   get,
-  list,
   create,
   update,
   del,
 }: APIFunctions) => {
   return {
     /** Returns a list of Sync Product objects from your custom Printful store. */
-    listProducts: list<
+    listProducts: get<
       readonly SyncProduct[],
       EmptyParameters,
       ProductsGetProductsGETParameters
-    >(
-      () => `/store/products`,
-      (params) => [{}, params]
-    ),
+    >(() => `/store/products`),
 
     /** Creates a new Sync Product together with its Sync Variants ({@link https://developers.printful.com/docs/#section/Products-API-examples/Create-a-new-Sync-Product See examples}). */
     createProduct: create<
       SyncProduct,
       EmptyParameters,
-      { readonly body: PostRequestProductBody }
-    >(
-      () => `/store/products`,
-      (params) => [{}, params]
-    ),
+      undefined,
+      PostRequestProductBody
+    >(() => `/store/products`),
 
     /** Get information about a single Sync Product and its Sync Variants. */
     getProduct: get<SyncProductInfo, ProductID>(
@@ -65,11 +59,9 @@ export const getProductsFunctions = ({
     modifyProduct: update<
       SyncProduct,
       ProductID,
-      { readonly body: PutRequestProductBody }
-    >(
-      ({ id }) => `/store/products/${id}`,
-      ({ id, ...putParams }) => [{ id }, putParams]
-    ),
+      undefined,
+      PutRequestProductBody
+    >(({ id }) => `/store/products/${id}`),
 
     /** Get information about a single Sync Variant. */
     getVariant: get<SyncVariant, ProductID>(
@@ -91,20 +83,16 @@ export const getProductsFunctions = ({
     modifyVariant: update<
       SyncVariant,
       ProductID,
-      { readonly body: PutRequestSyncVariant }
-    >(
-      ({ id }) => `/store/variants/${id}`,
-      ({ id, ...putParams }) => [{ id }, putParams]
-    ),
+      undefined,
+      PutRequestSyncVariant
+    >(({ id }) => `/store/variants/${id}`),
 
     /** Creates a new Sync Variant for an existing Sync Product ({@link https://developers.printful.com/docs/#section/Products-API-examples/Create-a-new-Sync-Variant See examples}). */
     createVariant: create<
       SyncVariant,
       ProductID,
-      { readonly body: PostRequestSyncVariant }
-    >(
-      ({ id }) => `/store/products/${id}/variants`,
-      ({ id, ...putParams }) => [{ id }, putParams]
-    ),
+      undefined,
+      PostRequestSyncVariant
+    >(({ id }) => `/store/products/${id}/variants`),
   };
 };

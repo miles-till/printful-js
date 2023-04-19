@@ -6,7 +6,7 @@ import { WebhookInfo } from '../types/webhook';
 export const getWebhookFunctions = ({ get, create, del }: APIFunctions) => {
   return {
     /** Returns configured webhook URL and list of webhook event types enabled for the store */
-    getWebhookConfig: get<WebhookInfo, EmptyParameters>(() => `/webhooks`),
+    getWebhookConfig: get<WebhookInfo>(() => `/webhooks`),
 
     /**
      * Allows to enable webhook URL for the store and select webhook event types that will be sent to this URL.
@@ -20,17 +20,15 @@ export const getWebhookFunctions = ({ get, create, del }: APIFunctions) => {
     setupWebhookConfig: create<
       WebhookInfo,
       EmptyParameters,
-      { readonly body: WebhookInfo }
-    >(
-      () => `/webhooks`,
-      (params) => [{}, params]
-    ),
+      undefined,
+      WebhookInfo
+    >(() => `/webhooks`),
 
     /**
      * Removes the webhook URL and all event types from the store.
      *
      * Method returns current webhook configuration after the update.
      */
-    disableWebhookSupport: del<WebhookInfo, EmptyParameters>(() => `/webhooks`),
+    disableWebhookSupport: del<WebhookInfo>(() => `/webhooks`),
   };
 };

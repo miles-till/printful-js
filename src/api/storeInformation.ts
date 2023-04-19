@@ -17,16 +17,14 @@ export const getStoreInformationFunctions = ({ get, create }: APIFunctions) => {
     modifyPackingSlip: create<
       PostResponsePackingSlip,
       EmptyParameters,
-      { readonly body: PostRequestPackingSlipBody }
-    >(
-      () => `/store/packing-slip`,
-      (params) => [{}, params]
-    ),
+      undefined,
+      PostRequestPackingSlipBody
+    >(() => `/store/packing-slip`),
 
     /** Get basic information about stores depending on the token access level */
     listStores: get<StoreData[], PagingGETParameters>(() => `/stores`),
 
     /** Get basic information about a store based on provided ID */
-    getStoreInfo: get<StoreData, EmptyParameters>(() => `/store`),
+    getStoreInfo: get<StoreData>(() => `/store`),
   };
 };

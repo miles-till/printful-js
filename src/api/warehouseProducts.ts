@@ -9,17 +9,14 @@ import {
 /** Product ID */
 type WarehouseProductID = IDParameter<number | string>;
 
-export const getWarehouseProductsFunctions = ({ get, list }: APIFunctions) => {
+export const getWarehouseProductsFunctions = ({ get }: APIFunctions) => {
   return {
     /** Returns a list of warehouse products from your store */
-    listWarehouseProducts: list<
+    listWarehouseProducts: get<
       readonly WarehouseProduct[],
       EmptyParameters,
       GetRequestWarehouseProductsGETParameters
-    >(
-      () => `/warehouse/products`,
-      (params) => [{}, params]
-    ),
+    >(() => `/warehouse/products`),
 
     /** Returns warehouse product data by ID */
     getWarehouseProduct: get<WarehouseProduct, WarehouseProductID>(

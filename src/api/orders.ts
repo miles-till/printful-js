@@ -13,32 +13,26 @@ import {
 import { withQueryString } from '../lib/functions';
 
 export const getOrdersFunctions = ({
-  list,
-  create,
   get,
+  create,
   del,
   update,
 }: APIFunctions) => {
   return {
     /** Returns list of order objects from your store */
-    listOrders: list<
+    listOrders: get<
       readonly Order[],
       EmptyParameters,
       OrdersGetOrdersGETParameters
-    >(
-      () => `/orders`,
-      (params) => [{}, params]
-    ),
+    >(() => `/orders`),
 
     /** Creates a new order and optionally submits it for fulfillment ({@link https://developers.printful.com/docs/#section/Orders-API-examples See examples}) */
     createOrder: create<
       Order,
       OrdersPostOrderPOSTParameters,
-      { readonly body: PostRequestOrderBody }
-    >(
-      (qsParams) => withQueryString(`/orders`, qsParams),
-      ({ body, ...qsParams }) => [qsParams, { body }]
-    ),
+      undefined,
+      PostRequestOrderBody
+    >((qsParams) => withQueryString(`/orders`, qsParams)),
 
     /** Returns order data by ID or External ID. */
     getOrderData: get<Order, OrderID>(({ id }) => `/orders/${id}`),
@@ -62,26 +56,19 @@ export const getOrdersFunctions = ({
     updateOrder: update<
       Order,
       OrdersPutOrderPUTParameters,
-      { readonly body: PostRequestOrderBody }
-    >(
-      ({ id, confirm }) => withQueryString(`orders/${id}`, { confirm }),
-      ({ body, ...urlParams }) => [urlParams, { body }]
-    ),
+      undefined,
+      PostRequestOrderBody
+    >(({ id, confirm }) => withQueryString(`orders/${id}`, { confirm })),
 
     /** Approves for fulfillment an order that was saved as a draft. Store owner's credit card is charged when the order is submitted for fulfillment. */
-    confirmDraft: create<Order, OrderID, EmptyParameters>(
-      ({ id }) => `/orders/${id}/confirm`,
-      (params) => [params, {}]
-    ),
+    confirmDraft: create<Order, OrderID>(({ id }) => `/orders/${id}/confirm`),
 
     /** Calculates the estimated order costs including item costs, print costs (back prints, inside labels etc.), shipping and taxes */
     estimateOrder: create<
       OrderCosts,
       EmptyParameters,
-      { readonly body: PostRequestOrderBody }
-    >(
-      () => `/orders/estimate-costs`,
-      (params) => [{}, params]
-    ),
+      undefined,
+      PostRequestOrderBody
+    >(() => `/orders/estimate-costs`),
   };
 };

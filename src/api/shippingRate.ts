@@ -9,10 +9,8 @@ export const getShippingRateFunctions = ({ create }: APIFunctions) => {
     calculateRates: create<
       ShippingInfo,
       EmptyParameters,
-      { readonly body: PostRequestShippingBody }
-    >(
-      () => `/shipping/rates`,
-      (params) => [{}, params]
-    ),
+      undefined,
+      PostRequestShippingBody
+    >(() => `/shipping/rates`),
   };
 };

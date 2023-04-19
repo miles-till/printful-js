@@ -1,20 +1,14 @@
 import { Response } from 'node-fetch';
 
 import {
-  APIResponse,
   DefaultErrorResponse,
   EmptyParameters,
   GetEndpoint,
   GETParameters,
-  POSTParameters,
-  PUTParameters,
   QueryParameters,
   RequestBody,
-  ResolveParameters,
-  Result,
   SuccessResponse,
   UrlParameters,
-  URLParameters,
 } from '../types/functions';
 
 import type { Fetch } from './fetch';
@@ -64,22 +58,6 @@ const makeRequest =
     );
   };
 
-export const makeList =
-  (fetch: Fetch) =>
-  <R extends Result, U extends URLParameters, P extends GETParameters>(
-    getEndpoint: GetEndpoint<U>,
-    getParameters: (parameters: U & P) => readonly [U, P]
-  ) =>
-  async (parameters: U & P) => {
-    const [URLParameters, queryParams] = getParameters(parameters);
-    const qs = getQueryString(queryParams);
-    return getProcessedResponse<SuccessResponse<R>>(() =>
-      fetch(`${getEndpoint(URLParameters)}${qs ? `?${qs}` : ''}`, {
-        method: 'GET',
-      })
-    );
-  };
-
 const getSyntheticError = (e: Error): DefaultErrorResponse => ({
   code: 444,
   result: e.message,
@@ -114,49 +92,6 @@ export const getProcessedResponse = async <R>(
   }
 };
 
-export const makeCreate =
-  (fetch: Fetch) =>
-  <R extends Result, U extends URLParameters, P extends POSTParameters>(
-    getEndpoint: GetEndpoint<U>,
-    getParameters: ResolveParameters<U, P>
-  ) =>
-  async (parameters: U & P) => {
-    const [URLParameters, postParameters] = getParameters(parameters);
-    return getProcessedResponse<APIResponse<R>>(() =>
-      fetch(getEndpoint(URLParameters), {
-        method: 'POST',
-        ...postParameters,
-      })
-    );
-  };
-
-export const makeUpdate =
-  (fetch: Fetch) =>
-  <R extends Result, U extends URLParameters, P extends PUTParameters>(
-    getEndpoint: GetEndpoint<U>,
-    getParameters: ResolveParameters<U, P>
-  ) =>
-  async (parameters: U & P) => {
-    const [URLParameters, putParameters] = getParameters(parameters);
-    return getProcessedResponse<APIResponse<R>>(() =>
-      fetch(getEndpoint(URLParameters), {
-        method: 'PUT',
-        ...putParameters,
-      })
-    );
-  };
-
-export const makeDelete =
-  (fetch: Fetch) =>
-  <R extends Result, U extends URLParameters>(getEndpoint: GetEndpoint<U>) =>
-  async (URLParameters: U) => {
-    return getProcessedResponse<APIResponse<R>>(() =>
-      fetch(getEndpoint(URLParameters), {
-        method: 'DELETE',
-      })
-    );
-  };
-
 export const asOptionalArgs =
   <R>(func: (args: Record<string, unknown>) => R) =>
   (parameters = {}) =>
@@ -164,8 +99,7 @@ export const asOptionalArgs =
 
 export const getAPIFunctions = (fetch: Fetch) => ({
   get: makeRequest(fetch, 'GET'),
-  list: makeList(fetch),
-  create: makeCreate(fetch),
-  update: makeUpdate(fetch),
-  del: makeDelete(fetch),
+  create: makeRequest(fetch, 'POST'),
+  update: makeRequest(fetch, 'PUT'),
+  del: makeRequest(fetch, 'DELETE'),
 });

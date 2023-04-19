@@ -11,21 +11,14 @@ import { ProductTemplate } from '../types/productTemplates';
 /** Template ID (integer) or External Product ID (if prefixed with @) */
 type ProductTemplateID = IDParameter<number | string>;
 
-export const getProductTemplatesFunctions = ({
-  get,
-  list,
-  del,
-}: APIFunctions) => {
+export const getProductTemplatesFunctions = ({ get, del }: APIFunctions) => {
   return {
     /** Returns a list of templates. */
-    listProducts: list<
+    listProducts: get<
       readonly ProductTemplate[],
       EmptyParameters,
       PagingGETParameters
-    >(
-      () => `/product_templates`,
-      (params) => [{}, params]
-    ),
+    >(() => `/product_templates`),
 
     /** Get information about a single product template */
     getProduct: get<ProductTemplate, ProductTemplateID>(

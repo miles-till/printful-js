@@ -6,7 +6,7 @@ import {
   Statistics,
 } from '../types/reports';
 
-export const getReportsFunctions = ({ list }: APIFunctions) => {
+export const getReportsFunctions = ({ get }: APIFunctions) => {
   return {
     /**
      * Returns statistics for specified report types.
@@ -15,13 +15,10 @@ export const getReportsFunctions = ({ list }: APIFunctions) => {
      *
      * **Note**: You cannot get statistics for a period longer than 6 months.
      */
-    getStatistics: list<
+    getStatistics: get<
       Statistics,
       EmptyParameters,
       GetRequestStatisticsGETParameters
-    >(
-      () => `/reports/statistics`,
-      (params) => [{}, params]
-    ),
+    >(() => `/reports/statistics`),
   };
 };

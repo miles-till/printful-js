@@ -21,11 +21,9 @@ export const getCatalogFunctions = ({ get, list }: APIFunctions) => {
     listProducts: list<
       readonly Product[],
       EmptyParameters,
+      undefined,
       CatalogGetProductsGETParameters
-    >(
-      () => `/products`,
-      (params) => [{}, params]
-    ),
+    >(() => `/products`),
 
     /** Returns information about a specific Variant and its Product */
     getVariant: get<VariantInfo, CatalogGetVariantURLParameters>(
@@ -42,10 +40,7 @@ export const getCatalogFunctions = ({ get, list }: APIFunctions) => {
       ProductSizeGuide,
       CatalogGetProductSizeGuideURLParameters,
       CatalogGetProductSizeGuideGETParameters
-    >(
-      ({ id }) => `/products/${id}/sizes`,
-      (params) => [{ id: params.id }, params]
-    ),
+    >(({ id }) => `/products/${id}/sizes`),
 
     /** Returns list of Catalog Categories available in the Printful */
     getCategories: get<Category[], EmptyParameters>(() => `/categories`),
