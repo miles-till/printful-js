@@ -15,10 +15,10 @@ import {
 } from '../types/catalog';
 import { APIFunctions, EmptyParameters } from '../types/functions';
 
-export const getCatalogFunctions = ({ get, list }: APIFunctions) => {
+export const getCatalogFunctions = ({ get }: APIFunctions) => {
   return {
     /** Returns list of Products available in the Printful */
-    listProducts: list<
+    listProducts: get<
       readonly Product[],
       EmptyParameters,
       undefined,
@@ -36,7 +36,7 @@ export const getCatalogFunctions = ({ get, list }: APIFunctions) => {
     ),
 
     /** Returns information about the size guide for a specific product. */
-    getProductSizeGuide: list<
+    getProductSizeGuide: get<
       ProductSizeGuide,
       CatalogGetProductSizeGuideURLParameters,
       CatalogGetProductSizeGuideGETParameters
