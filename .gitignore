@@ -7,3 +7,12 @@ src/**.js
 coverage
 *.log
 package-lock.json
+
+# yarn 2 no zero-install
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
