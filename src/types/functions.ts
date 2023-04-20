@@ -22,7 +22,7 @@ type BaseParameters = Record<string, unknown> | ReadonlyArray<unknown>;
 
 export type UrlParameters = BaseParameters;
 export type QueryParameters =
-  | Record<string, string | number | boolean>
+  | Record<string, string | number | boolean | undefined>
   | undefined;
 export type RequestBody = BaseParameters;
 

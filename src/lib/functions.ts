@@ -4,7 +4,6 @@ import {
   DefaultErrorResponse,
   EmptyParameters,
   GetEndpoint,
-  GETParameters,
   QueryParameters,
   RequestBody,
   SuccessResponse,
@@ -14,15 +13,19 @@ import {
 import type { Fetch } from './fetch';
 import { ratelimited } from './ratelimit';
 
-const getQueryString = <P extends GETParameters>(parameters: P): string =>
-  Object.entries(parameters)
-    .map(
-      ([key, value]) =>
-        `${encodeURIComponent(key)}=${encodeURIComponent(value)}`
+const getQueryString = <P extends QueryParameters>(parameters: P): string => {
+  if (parameters === undefined) return '';
+  return Object.entries(parameters)
+    .map(([key, value]) =>
+      value !== undefined
+        ? `${encodeURIComponent(key)}=${encodeURIComponent(value)}`
+        : ''
     )
+    .filter((value) => value !== '')
     .join('&');
+};
 
-export const withQueryString = <P extends GETParameters>(
+export const withQueryString = <P extends QueryParameters>(
   endpoint: string,
   parameters: P
 ) => {
@@ -50,10 +53,18 @@ const makeRequest =
     const queryParams = parameters?.query;
     const bodyParams = parameters?.body;
     const endpoint = withQueryString(getEndpoint(urlParams), queryParams ?? {});
+    const fetchConfig =
+      bodyParams !== undefined
+        ? {
+            body: JSON.stringify(bodyParams),
+            headers: { 'Content-Type': 'application/json' },
+          }
+        : {};
+
     return getProcessedResponse<SuccessResponse<TResult>>(() =>
       fetch(endpoint, {
         method: method,
-        body: bodyParams,
+        ...fetchConfig,
       })
     );
   };
