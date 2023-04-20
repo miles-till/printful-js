@@ -5469,23 +5469,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"node-fetch@npm:3.2.8":
+  version: 3.2.8
+  resolution: "node-fetch@npm:3.2.8"
+  dependencies:
+    data-uri-to-buffer: ^4.0.0
+    fetch-blob: ^3.1.4
+    formdata-polyfill: ^4.0.10
+  checksum: 2f7fc3e59fbede43a273e988d2f2a3dd68160618114e32ad537477db253808b65221f1dbfd666b8fb33ff07bf1de9d6448035b0f8ada5ef876c5afec93b27318
+  languageName: node
+  linkType: hard
+
 "node-fetch@npm:^2.6.1":
   version: 2.6.5
   resolution: "node-fetch@npm:2.6.5"
   dependencies:
     whatwg-url: ^5.0.0
   checksum: 4e83db450718e70762882f00d96f647a7f2f3170035225934ddd5450cb1d91ef339ceb180d3687bcb0a6ed78c3fa5636ce8d3e44ec81ab59e0224ebf8965f65f
-  languageName: node
-  linkType: hard
-
-"node-fetch@npm:^3.3.1":
-  version: 3.3.1
-  resolution: "node-fetch@npm:3.3.1"
-  dependencies:
-    data-uri-to-buffer: ^4.0.0
-    fetch-blob: ^3.1.4
-    formdata-polyfill: ^4.0.10
-  checksum: 62145fd3ba4770a76110bc31fdc0054ab2f5442b5ce96e9c4b39fc9e94a3d305560eec76e1165d9259eab866e02a8eecf9301062bb5dfc9f08a4d08b69d223dd
   languageName: node
   linkType: hard
 
@@ -6209,7 +6209,7 @@ __metadata:
     eslint-plugin-functional: ^5.0.8
     eslint-plugin-import: ^2.27.5
     gh-pages: ^3.1.0
-    node-fetch: ^3.3.1
+    node-fetch: 3.2.8
     npm-run-all: ^4.1.5
     nyc: ^15.1.0
     open-cli: ^6.0.1
