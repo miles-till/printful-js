@@ -1,4 +1,4 @@
-import { Color, ItemOption, Placement } from './common';
+import type { Color, ItemOption, Placement } from './common';
 
 export type ProductTemplate = {
   readonly id: number;

@@ -1,8 +1,12 @@
 //https://developers.printful.com/docs/#tag/Product-Templates-API
 
-import { PagingRequest } from '../types/common';
-import { APIFunctions, EmptyParameters, IDParameter } from '../types/functions';
-import { ProductTemplate } from '../types/productTemplates';
+import type { PagingRequest } from '../types/common';
+import type {
+  APIFunctions,
+  EmptyParameters,
+  IDParameter,
+} from '../types/functions';
+import type { ProductTemplate } from '../types/productTemplates';
 
 /** Template ID (integer) or External Product ID (if prefixed with @) */
 type ProductTemplateID = IDParameter<number | string>;

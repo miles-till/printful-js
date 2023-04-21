@@ -1,47 +1,47 @@
-import { ItemOption, PagingRequest } from './common';
-import { File } from './fileLibrary';
-import { RequireOnly } from './util';
+import type { ItemOption, PagingRequest } from './common';
+import type { File } from './fileLibrary';
+import type { RequireOnly } from './util';
 
 /*
  * Request parameters
  */
 
-export type ProductsGetProductsGETParameters = Partial<
+export type ListProductsQueryParameters = Partial<
   {
     /** A comma-separated list of Category IDs of the Products that are to be returned */
     readonly category_id: string;
   } & PagingRequest
 >;
 
-export type PostRequestProductBody = {
+export type CreateProductRequestBody = {
   /** Information about the SyncProduct */
-  readonly sync_product: PostRequestSyncProduct;
+  readonly sync_product: CreateProductSyncProduct;
   /** Information about the Sync Variants */
-  readonly sync_variants: readonly PostRequestSyncVariant[];
+  readonly sync_variants: readonly CreateVariantRequestBody[];
 };
 
-export type PostRequestSyncProduct = RequireOnly<RequestSyncProduct, 'name'>;
+type CreateProductSyncProduct = RequireOnly<RequestSyncProduct, 'name'>;
 
-export type PostRequestSyncVariant = RequireOnly<
+export type CreateVariantRequestBody = RequireOnly<
   Omit<RequestSyncVariant, 'id'>,
   'variant_id' | 'files'
 >;
 
-export type PutRequestProductBody = {
+export type ModifyProductRequestBody = {
   /** Information about the SyncProduct */
-  readonly sync_product: PutRequestSyncProduct;
+  readonly sync_product: ModifyProductSyncProduct;
   /** Information about the Sync Variants */
-  readonly sync_variants: readonly PutRequestSyncVariant[];
+  readonly sync_variants: readonly ModifyVariantRequestBody[];
 };
 
-export type PutRequestSyncProduct = RequireOnly<RequestSyncProduct, 'name'>;
+type ModifyProductSyncProduct = RequireOnly<RequestSyncProduct, 'name'>;
 
-export type PutRequestSyncVariant = RequireOnly<
+export type ModifyVariantRequestBody = RequireOnly<
   RequestSyncVariant,
   'variant_id' | 'files'
 >;
 
-export type RequestSyncProduct = {
+type RequestSyncProduct = {
   /** Product ID from the Ecommerce platform */
   readonly external_id: string;
   /** Product name */
@@ -56,7 +56,7 @@ export type RequestSyncProduct = {
   readonly is_ignored: boolean;
 };
 
-export type RequestSyncVariant = {
+type RequestSyncVariant = {
   /** Sync Variant ID. Please specify the IDs of all Sync Variants you wish to keep. */
   readonly id: number;
   /** Variant ID from the Ecommerce platform */

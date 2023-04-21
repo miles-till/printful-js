@@ -1,10 +1,10 @@
-import { PagingRequest } from './common';
+import type { PagingRequest } from './common';
 
 /*
  * Request parameters
  */
 
-export type EcommerceGetProductsGETParameters = Partial<
+export type ListProductsQueryParameters = Partial<
   {
     /** Filter by item status (`synced`/`unsynced`/`all`). If only some of the variants are synced,the product is returned by both unsynced and synced filters */
     readonly status: string;

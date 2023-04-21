@@ -1,16 +1,17 @@
 //https://developers.printful.com/docs/#tag/Orders-API
 
-import { APIFunctions, EmptyParameters } from '../types/functions';
-import {
+import type { APIFunctions, EmptyParameters } from '../types/functions';
+import type {
   Order,
   OrderCosts,
   OrderID,
-  OrdersGetOrdersGETParameters,
-  OrdersPostOrderPOSTParameters,
-  OrdersPutOrderPUTParameters,
-  PostRequestOrderBody,
+  ListOrdersQueryParameters,
+  CreateOrderQueryParameters,
+  UpdateOrderQueryParameters,
+  CreateOrderRequestBody,
+  UpdateOrderRequestBody,
+  EstimateOrderRequestBody,
 } from '../types/orders';
-import { withQueryString } from '../lib/functions';
 
 export const getOrdersFunctions = ({
   get,
@@ -23,16 +24,16 @@ export const getOrdersFunctions = ({
     listOrders: get<
       readonly Order[],
       EmptyParameters,
-      OrdersGetOrdersGETParameters
+      ListOrdersQueryParameters
     >(() => `/orders`),
 
     /** Creates a new order and optionally submits it for fulfillment ({@link https://developers.printful.com/docs/#section/Orders-API-examples See examples}) */
     createOrder: create<
       Order,
-      OrdersPostOrderPOSTParameters,
-      undefined,
-      PostRequestOrderBody
-    >((qsParams) => withQueryString(`/orders`, qsParams)),
+      EmptyParameters,
+      CreateOrderQueryParameters,
+      CreateOrderRequestBody
+    >(() => `/orders`),
 
     /** Returns order data by ID or External ID. */
     getOrderData: get<Order, OrderID>(({ id }) => `/orders/${id}`),
@@ -55,10 +56,10 @@ export const getOrdersFunctions = ({
      */
     updateOrder: update<
       Order,
-      OrdersPutOrderPUTParameters,
-      undefined,
-      PostRequestOrderBody
-    >(({ id, confirm }) => withQueryString(`orders/${id}`, { confirm })),
+      OrderID,
+      UpdateOrderQueryParameters,
+      UpdateOrderRequestBody
+    >(({ id }) => `orders/${id}`),
 
     /** Approves for fulfillment an order that was saved as a draft. Store owner's credit card is charged when the order is submitted for fulfillment. */
     confirmDraft: create<Order, OrderID>(({ id }) => `/orders/${id}/confirm`),
@@ -68,7 +69,7 @@ export const getOrdersFunctions = ({
       OrderCosts,
       EmptyParameters,
       undefined,
-      PostRequestOrderBody
+      EstimateOrderRequestBody
     >(() => `/orders/estimate-costs`),
   };
 };

@@ -1,12 +1,16 @@
 //https://developers.printful.com/docs/#tag/Products-API
 
-import { APIFunctions, EmptyParameters, IDParameter } from '../types/functions';
-import {
-  ProductsGetProductsGETParameters,
-  PutRequestProductBody,
-  PutRequestSyncVariant,
-  PostRequestProductBody,
-  PostRequestSyncVariant,
+import type {
+  APIFunctions,
+  EmptyParameters,
+  IDParameter,
+} from '../types/functions';
+import type {
+  ListProductsQueryParameters,
+  ModifyProductRequestBody,
+  ModifyVariantRequestBody,
+  CreateProductRequestBody,
+  CreateVariantRequestBody,
   SyncProduct,
   SyncProductInfo,
   SyncVariant,
@@ -26,7 +30,7 @@ export const getProductsFunctions = ({
     listProducts: get<
       readonly SyncProduct[],
       EmptyParameters,
-      ProductsGetProductsGETParameters
+      ListProductsQueryParameters
     >(() => `/store/products`),
 
     /** Creates a new Sync Product together with its Sync Variants ({@link https://developers.printful.com/docs/#section/Products-API-examples/Create-a-new-Sync-Product See examples}). */
@@ -34,7 +38,7 @@ export const getProductsFunctions = ({
       SyncProduct,
       EmptyParameters,
       undefined,
-      PostRequestProductBody
+      CreateProductRequestBody
     >(() => `/store/products`),
 
     /** Get information about a single Sync Product and its Sync Variants. */
@@ -60,7 +64,7 @@ export const getProductsFunctions = ({
       SyncProduct,
       ProductID,
       undefined,
-      PutRequestProductBody
+      ModifyProductRequestBody
     >(({ id }) => `/store/products/${id}`),
 
     /** Get information about a single Sync Variant. */
@@ -84,7 +88,7 @@ export const getProductsFunctions = ({
       SyncVariant,
       ProductID,
       undefined,
-      PutRequestSyncVariant
+      ModifyVariantRequestBody
     >(({ id }) => `/store/variants/${id}`),
 
     /** Creates a new Sync Variant for an existing Sync Product ({@link https://developers.printful.com/docs/#section/Products-API-examples/Create-a-new-Sync-Variant See examples}). */
@@ -92,7 +96,7 @@ export const getProductsFunctions = ({
       SyncVariant,
       ProductID,
       undefined,
-      PostRequestSyncVariant
+      CreateVariantRequestBody
     >(({ id }) => `/store/products/${id}/variants`),
   };
 };

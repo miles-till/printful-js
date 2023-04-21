@@ -1,14 +1,14 @@
 //https://developers.printful.com/docs/#tag/Approval-Sheets-API
 
-import {
+import type {
   ApprovalSheet,
-  PostRequestApproveDesignBody,
-  PostRequestApproveDesignPOSTParameters,
-  PostRequestApproveDesignResponse,
-  PostRequestSubmitChangesBody,
-  PostRequestSubmitChangesPOSTParameters,
+  ApproveDesignRequestBody,
+  ApproveDesignQueryParameters,
+  ApproveDesignResponse,
+  SubmitChangesRequestBody,
+  SubmitChangesQueryParameters,
 } from '../types/approvalSheets';
-import { APIFunctions, EmptyParameters } from '../types/functions';
+import type { APIFunctions, EmptyParameters } from '../types/functions';
 
 export const getApprovalSheetsFunctions = ({ get, create }: APIFunctions) => {
   return {
@@ -17,18 +17,18 @@ export const getApprovalSheetsFunctions = ({ get, create }: APIFunctions) => {
 
     /** Uses the confirm hash of an approval sheet to approve a design and remove the hold on an order */
     approveDesign: create<
-      PostRequestApproveDesignResponse,
+      ApproveDesignResponse,
       EmptyParameters,
-      PostRequestApproveDesignPOSTParameters,
-      PostRequestApproveDesignBody
+      ApproveDesignQueryParameters,
+      ApproveDesignRequestBody
     >(() => '/approval-sheets'),
 
     /** Use this to submit alternative changes to a design that has an approval sheet */
     submitChanges: create<
       ApprovalSheet,
       EmptyParameters,
-      PostRequestSubmitChangesPOSTParameters,
-      PostRequestSubmitChangesBody
+      SubmitChangesQueryParameters,
+      SubmitChangesRequestBody
     >(() => '/approval-sheets/changes'),
   };
 };

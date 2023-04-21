@@ -1,12 +1,16 @@
 //https://developers.printful.com/docs/#tag/File-Library-API
 
-import {
+import type {
   File,
-  PostRequestAvailableThreadColorsBody,
-  PostRequestFileBody,
+  AvailableThreadColorsRequestBody,
+  AddFileRequestBody,
   ThreadColors,
 } from '../types/fileLibrary';
-import { APIFunctions, EmptyParameters, IDParameter } from '../types/functions';
+import type {
+  APIFunctions,
+  EmptyParameters,
+  IDParameter,
+} from '../types/functions';
 
 export const getFileLibraryFunctions = ({ create, get }: APIFunctions) => {
   return {
@@ -17,7 +21,7 @@ export const getFileLibraryFunctions = ({ create, get }: APIFunctions) => {
      *
      * {@link https://developers.printful.com/docs/#section/File-Library-API-examples/Add-a-new-file See examples}
      */
-    addFile: create<File, EmptyParameters, undefined, PostRequestFileBody>(
+    addFile: create<File, EmptyParameters, undefined, AddFileRequestBody>(
       () => `/files`
     ),
 
@@ -35,7 +39,7 @@ export const getFileLibraryFunctions = ({ create, get }: APIFunctions) => {
       ThreadColors,
       EmptyParameters,
       undefined,
-      PostRequestAvailableThreadColorsBody
+      AvailableThreadColorsRequestBody
     >(() => `/files/thread-colors`),
   };
 };

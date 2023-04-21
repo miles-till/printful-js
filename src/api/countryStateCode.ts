@@ -1,7 +1,7 @@
 //https://developers.printful.com/docs/#tag/CountryState-Code-API
 
-import { Country } from '../types/countryStateCode';
-import { APIFunctions } from '../types/functions';
+import type { Country } from '../types/countryStateCode';
+import type { APIFunctions } from '../types/functions';
 
 export const getCountryStateCodeFunctions = ({ get }: APIFunctions) => {
   return {

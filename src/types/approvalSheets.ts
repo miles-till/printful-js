@@ -2,26 +2,24 @@
  * Request parameters
  */
 
-export type PostRequestApproveDesignPOSTParameters = ConfirmHash;
+export type ApproveDesignQueryParameters = ConfirmHash;
 
-export type PostRequestApproveDesignBody = {
+export type ApproveDesignRequestBody = {
   /** Value: `"approved"` */
   readonly status: 'approved';
 };
 
-export type PostRequestApproveDesignResponse = {
+export type ApproveDesignResponse = {
   readonly message: string;
 };
 
-export type PostRequestSubmitChangesPOSTParameters = ConfirmHash;
+export type SubmitChangesQueryParameters = ConfirmHash;
 
-export type PostRequestSubmitChangesBody = {
-  readonly body: {
-    /** A message to send to Printful designers. Customers should use this to describe the changes they want. */
-    readonly message: string;
-    /** An array of images to help describe the requested changes. Consider using the mockup generator to generate these images. The array is required but can be empty if you do not want to email any images. */
-    readonly files: readonly ApprovalFile[];
-  };
+export type SubmitChangesRequestBody = {
+  /** A message to send to Printful designers. Customers should use this to describe the changes they want. */
+  readonly message: string;
+  /** An array of images to help describe the requested changes. Consider using the mockup generator to generate these images. The array is required but can be empty if you do not want to email any images. */
+  readonly files: readonly ApprovalFile[];
 };
 
 type ConfirmHash = {

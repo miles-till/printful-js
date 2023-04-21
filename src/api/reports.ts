@@ -1,8 +1,8 @@
 //https://developers.printful.com/docs/#tag/Reports-API
 
-import { APIFunctions, EmptyParameters } from '../types/functions';
-import {
-  GetRequestStatisticsGETParameters,
+import type { APIFunctions, EmptyParameters } from '../types/functions';
+import type {
+  GetStatisticsQueryParameters,
   Statistics,
 } from '../types/reports';
 
@@ -18,7 +18,7 @@ export const getReportsFunctions = ({ get }: APIFunctions) => {
     getStatistics: get<
       Statistics,
       EmptyParameters,
-      GetRequestStatisticsGETParameters
+      GetStatisticsQueryParameters
     >(() => `/reports/statistics`),
   };
 };

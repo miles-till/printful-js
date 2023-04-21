@@ -1,4 +1,4 @@
-import {
+import type {
   Address,
   Costs,
   IncompleteItem,
@@ -7,25 +7,25 @@ import {
   PagingRequest,
   Timestamp,
 } from './common';
-import { IDParameter } from './functions';
-import { RequireOnly } from './util';
+import type { IDParameter } from './functions';
+import type { RequireOnly } from './util';
 
 /*
  * Request parameters
  */
 
-export type OrdersGetOrdersGETParameters = {
+export type ListOrdersQueryParameters = {
   readonly status: OrderStatus;
 } & PagingRequest;
 
-export type OrdersPostOrderPOSTParameters = Partial<{
+export type CreateOrderQueryParameters = Partial<{
   /** Automatically submit the newly created order for fulfillment (skip the Draft phase) */
   readonly confirm: boolean;
   /** Try to update existing order if an order with the specified external_id already exists */
   readonly update_existing: boolean;
 }>;
 
-export type PostRequestOrderBody = RequireOnly<
+export type CreateOrderRequestBody = RequireOnly<
   Pick<
     Order,
     | 'external_id'
@@ -39,10 +39,14 @@ export type PostRequestOrderBody = RequireOnly<
   'recipient' | 'items'
 >;
 
-export type OrdersPutOrderPUTParameters = OrderID & {
+export type UpdateOrderQueryParameters = {
   /** Automatically submit the newly created order for fulfillment (skip the Draft phase) */
   readonly confirm: boolean;
 };
+
+export type UpdateOrderRequestBody = CreateOrderRequestBody;
+
+export type EstimateOrderRequestBody = CreateOrderRequestBody;
 
 /*
  * Types

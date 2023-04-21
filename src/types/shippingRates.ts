@@ -1,11 +1,11 @@
-import { Address, Item } from './common';
-import { RequireOnly } from './util';
+import type { Address, Item } from './common';
+import type { RequireOnly } from './util';
 
 /*
  * Request parameters
  */
 
-export type PostRequestShippingBody = {
+export type CalculateRatesRequestBody = {
   /** Recipient location information */
   readonly recipient: AddressInfo;
   /** Array of order items */

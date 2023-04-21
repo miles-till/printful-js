@@ -1,8 +1,10 @@
-import { PropertyMap } from './common';
+import type { PropertyMap } from './common';
 
 /*
  * Request parameters
  */
+
+export type SetupWebhookConfigRequestBody = WebhookInfo;
 
 /*
  * Types

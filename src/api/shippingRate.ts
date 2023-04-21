@@ -1,7 +1,10 @@
 //https://developers.printful.com/docs/#tag/Shipping-Rate-API
 
-import { APIFunctions, EmptyParameters } from '../types/functions';
-import { ShippingInfo, PostRequestShippingBody } from '../types/shippingRates';
+import type { APIFunctions, EmptyParameters } from '../types/functions';
+import type {
+  ShippingInfo,
+  CalculateRatesRequestBody,
+} from '../types/shippingRates';
 
 export const getShippingRateFunctions = ({ create }: APIFunctions) => {
   return {
@@ -10,7 +13,7 @@ export const getShippingRateFunctions = ({ create }: APIFunctions) => {
       ShippingInfo,
       EmptyParameters,
       undefined,
-      PostRequestShippingBody
+      CalculateRatesRequestBody
     >(() => `/shipping/rates`),
   };
 };

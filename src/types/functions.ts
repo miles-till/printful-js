@@ -1,4 +1,4 @@
-import { Response } from 'node-fetch';
+import type { Response } from 'node-fetch';
 
 import { getAPIFunctions } from '../lib/functions';
 

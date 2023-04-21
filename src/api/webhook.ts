@@ -1,7 +1,10 @@
 //https://developers.printful.com/docs/#tag/Webhook-API
 
-import { APIFunctions, EmptyParameters } from '../types/functions';
-import { WebhookInfo } from '../types/webhook';
+import type { APIFunctions, EmptyParameters } from '../types/functions';
+import type {
+  SetupWebhookConfigRequestBody,
+  WebhookInfo,
+} from '../types/webhook';
 
 export const getWebhookFunctions = ({ get, create, del }: APIFunctions) => {
   return {
@@ -21,7 +24,7 @@ export const getWebhookFunctions = ({ get, create, del }: APIFunctions) => {
       WebhookInfo,
       EmptyParameters,
       undefined,
-      WebhookInfo
+      SetupWebhookConfigRequestBody
     >(() => `/webhooks`),
 
     /**

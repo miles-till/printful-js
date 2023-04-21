@@ -2,7 +2,7 @@
  * Request parameters
  */
 
-export type GetRequestStatisticsGETParameters = {
+export type GetStatisticsQueryParameters = {
   /**
    * Example: `date_from=2022-08-01`
    *

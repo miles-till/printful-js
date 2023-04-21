@@ -1,9 +1,13 @@
 //https://developers.printful.com/docs/#tag/Ecommerce-Platform-Sync-API
 
-import { APIFunctions, EmptyParameters, IDParameter } from '../types/functions';
-import { EcommerceGetProductsGETParameters } from '../types/ecommercePlatformSync';
-import {
-  PutRequestSyncVariant,
+import type {
+  APIFunctions,
+  EmptyParameters,
+  IDParameter,
+} from '../types/functions';
+import type { ListProductsQueryParameters } from '../types/ecommercePlatformSync';
+import type {
+  ModifyVariantRequestBody,
   SyncProduct,
   SyncProductInfo,
   SyncVariant,
@@ -22,7 +26,7 @@ export const getEcommercePlatformSyncFunctions = ({
     listProducts: get<
       readonly SyncProduct[],
       EmptyParameters,
-      EcommerceGetProductsGETParameters
+      ListProductsQueryParameters
     >(() => `/store/products`),
 
     /** Get information about a single Sync Product and its Sync Variants */
@@ -51,7 +55,7 @@ export const getEcommercePlatformSyncFunctions = ({
       SyncVariant,
       ProductID,
       undefined,
-      PutRequestSyncVariant
+      ModifyVariantRequestBody
     >(({ id }) => `/store/variants/${id}`),
 
     /** Deletes configuraton information (`variant_id`, print files and options) and disables automatic order importing for this Sync Variant. */

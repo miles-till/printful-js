@@ -1,13 +1,13 @@
-import { PackingSlip } from './common';
-import { RequireOnly } from './util';
+import type { PackingSlip } from './common';
+import type { RequireOnly } from './util';
 
 /*
  * Request parameters
  */
 
-export type PostRequestPackingSlipBody = StorePackingSlip;
+export type ModifyPackingSlipRequestBody = StorePackingSlip;
 
-export type PostResponsePackingSlip = {
+export type ModifyPackingSlipResponse = {
   packing_slip: StorePackingSlip;
 };
 

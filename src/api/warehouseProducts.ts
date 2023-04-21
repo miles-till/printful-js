@@ -1,8 +1,12 @@
 //https://developers.printful.com/docs/#tag/Warehouse-Products-API
 
-import { APIFunctions, EmptyParameters, IDParameter } from '../types/functions';
-import {
-  GetRequestWarehouseProductsGETParameters,
+import type {
+  APIFunctions,
+  EmptyParameters,
+  IDParameter,
+} from '../types/functions';
+import type {
+  ListWarehouseProductsQueryParameters,
   WarehouseProduct,
 } from '../types/warehouseProducts';
 
@@ -15,7 +19,7 @@ export const getWarehouseProductsFunctions = ({ get }: APIFunctions) => {
     listWarehouseProducts: get<
       readonly WarehouseProduct[],
       EmptyParameters,
-      GetRequestWarehouseProductsGETParameters
+      ListWarehouseProductsQueryParameters
     >(() => `/warehouse/products`),
 
     /** Returns warehouse product data by ID */

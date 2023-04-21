@@ -1,7 +1,11 @@
 //https://developers.printful.com/docs/#tag/Mockup-Generator-API
 
-import { APIFunctions, EmptyParameters, IDParameter } from '../types/functions';
-import {
+import type {
+  APIFunctions,
+  EmptyParameters,
+  IDParameter,
+} from '../types/functions';
+import type {
   PostRequestMockupGenerationTaskBody,
   GenerationTask,
   GetRequestPrintfilesGETParameters,

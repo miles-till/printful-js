@@ -1,5 +1,5 @@
-import { File } from './fileLibrary';
-import { ProductVariant } from './products';
+import type { File } from './fileLibrary';
+import type { ProductVariant } from './products';
 
 export type PagingRequest = Partial<{
   /** Current result set page offset */

@@ -1,19 +1,19 @@
 //https://developers.printful.com/docs/#tag/Catalog-API
 
-import {
-  CatalogGetCategoryURLParameters,
-  CatalogGetProductSizeGuideGETParameters,
-  CatalogGetProductSizeGuideURLParameters,
-  CatalogGetProductURLParameters,
-  CatalogGetProductsGETParameters,
-  CatalogGetVariantURLParameters,
+import type {
+  GetCategoryUrlParameters,
+  GetProductSizeGuideQueryParameters,
+  GetProductSizeGuideUrlParameters,
+  GetProductUrlParameters,
+  ListProductsQueryParameters,
+  GetVariantUrlParameters,
   Category,
   Product,
   ProductInfo,
   ProductSizeGuide,
   VariantInfo,
 } from '../types/catalog';
-import { APIFunctions, EmptyParameters } from '../types/functions';
+import type { APIFunctions, EmptyParameters } from '../types/functions';
 
 export const getCatalogFunctions = ({ get }: APIFunctions) => {
   return {
@@ -21,32 +21,31 @@ export const getCatalogFunctions = ({ get }: APIFunctions) => {
     listProducts: get<
       readonly Product[],
       EmptyParameters,
-      undefined,
-      CatalogGetProductsGETParameters
+      ListProductsQueryParameters
     >(() => `/products`),
 
     /** Returns information about a specific Variant and its Product */
-    getVariant: get<VariantInfo, CatalogGetVariantURLParameters>(
+    getVariant: get<VariantInfo, GetVariantUrlParameters>(
       ({ id }) => `/products/variant/${id}`
     ),
 
     /** Returns information about a specific product and a list of variants for this product. */
-    getProduct: get<ProductInfo, CatalogGetProductURLParameters>(
+    getProduct: get<ProductInfo, GetProductUrlParameters>(
       ({ id }) => `/products/${id}`
     ),
 
     /** Returns information about the size guide for a specific product. */
     getProductSizeGuide: get<
       ProductSizeGuide,
-      CatalogGetProductSizeGuideURLParameters,
-      CatalogGetProductSizeGuideGETParameters
+      GetProductSizeGuideUrlParameters,
+      GetProductSizeGuideQueryParameters
     >(({ id }) => `/products/${id}/sizes`),
 
     /** Returns list of Catalog Categories available in the Printful */
-    getCategories: get<Category[], EmptyParameters>(() => `/categories`),
+    getCategories: get<Category[]>(() => `/categories`),
 
     /** Returns list of Catalog Categories available in the Printful */
-    getCategory: get<Category, CatalogGetCategoryURLParameters>(
+    getCategory: get<Category, GetCategoryUrlParameters>(
       ({ id }) => `/categories/${id}`
     ),
   };

@@ -1,10 +1,10 @@
-import { Address } from './common';
+import type { Address } from './common';
 
 /*
  * Request parameters
  */
 
-export type TaxRequest = {
+export type CalculateTaxRatesRequestBody = {
   readonly recipient: TaxAddressInfo;
 };
 

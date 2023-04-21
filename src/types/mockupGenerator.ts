@@ -1,10 +1,31 @@
-import { PropertyMap } from './common';
+import type { PropertyMap } from './common';
+import type { FileOption } from './fileLibrary';
 
 /*
  * Request parameters
  */
 
-export type PostRequestMockupGenerationTaskBody = {};
+export type PostRequestMockupGenerationTaskBody = {
+  /** List of variant ids you want to generate. */
+  readonly variant_ids: number[];
+  /**
+   * Enum: "jpg" "png"
+   *
+   * Generated file format. PNG will have a transparent background, JPG will have a smaller file size.
+   */
+  readonly format: string;
+  /** Width of the resulting mockup images (min 50, max 2000, default is 1000) */
+  readonly width: number;
+  /** Key-value list of product options (embroidery thread, stitch colors). Product options can be found in Catalog API endpoint. {@link https://developers.printful.com/docs/#section/Options See examples} */
+  readonly product_options: PropertyMap;
+  /** List of option group names you want to generate. Product's option groups can be found in printfile API request. */
+  readonly option_groups: string[];
+  /** List of option names you want to generate. Product's options can be found in printfile API request. */
+  readonly options: string[];
+  readonly files: GenerationTaskFile[];
+  /** Product template ID. Use instead of files parameter. */
+  readonly product_template_id: number;
+};
 
 export type GetRequestPrintfilesGETParameters = Partial<{
   /**
@@ -25,6 +46,37 @@ export type GetRequestGenerationTaskGETParameters = {
 /*
  * Types
  */
+
+type GenerationTaskFile = {
+  /** Placement identifier (front, back, etc.). */
+  readonly placement: string;
+  /** Public URL where your file is stored. */
+  readonly image_url: string;
+  /** Position */
+  readonly position: GenerationTaskFilePosition;
+  /** Array of additional options for this file {@link https://developers.printful.com/docs/#section/Options See examples} */
+  readonly options: FileOption[];
+};
+
+type GenerationTaskFilePosition = {
+  /** Positioning area width on print area in pixels */
+  readonly area_width: number;
+
+  /** Positioning area height on print area in pixels */
+  readonly area_height: number;
+
+  /** Width of the image in given area in pixels */
+  readonly width: number;
+
+  /** Height of the image in given area in pixels */
+  readonly height: number;
+
+  /** Image top offset in given area in pixels */
+  readonly top: number;
+
+  /** Image left offset in given area in pixels */
+  readonly left: number;
+};
 
 export type GenerationTask = {
   /** Task identifier you will use to retrieve generated mockups. */

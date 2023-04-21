@@ -1,4 +1,4 @@
-import {
+import type {
   AvailabilityStatus,
   AvailableTechnique,
   FileType,
@@ -12,27 +12,27 @@ import {
  * Request parameters
  */
 
-export type CatalogGetProductsGETParameters = {
+export type ListProductsQueryParameters = {
   /** A comma-separated list of Category IDs of the Products that are to be returned */
   readonly category_id?: string;
 };
 
-export type CatalogGetVariantURLParameters = {
+export type GetVariantUrlParameters = {
   /** Variant id */
   readonly id: number;
 };
 
-export type CatalogGetProductURLParameters = {
+export type GetProductUrlParameters = {
   /** Product id */
   readonly id: number;
 };
 
-export type CatalogGetProductSizeGuideURLParameters = {
+export type GetProductSizeGuideUrlParameters = {
   /** Product id */
   readonly id: number;
 };
 
-export type CatalogGetProductSizeGuideGETParameters = {
+export type GetProductSizeGuideQueryParameters = {
   /**
    * Example: unit=inches,cm
    *
@@ -40,7 +40,7 @@ export type CatalogGetProductSizeGuideGETParameters = {
   readonly unit: Unit;
 };
 
-export type CatalogGetCategoryURLParameters = {
+export type GetCategoryUrlParameters = {
   /** Category ID */
   readonly id: number;
 };

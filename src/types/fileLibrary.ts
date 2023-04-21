@@ -1,16 +1,16 @@
-import { Timestamp, ValueType } from './common';
-import { RequireOnly } from './util';
+import type { Timestamp, ValueType } from './common';
+import type { RequireOnly } from './util';
 
 /*
  * Request parameters
  */
 
-export type PostRequestFileBody = RequireOnly<
+export type AddFileRequestBody = RequireOnly<
   Pick<File, 'type' | 'url' | 'options' | 'filename' | 'visible'>,
   'url'
 >;
 
-export type PostRequestAvailableThreadColorsBody = {
+export type AvailableThreadColorsRequestBody = {
   /** URL to file */
   file_url: string;
 };

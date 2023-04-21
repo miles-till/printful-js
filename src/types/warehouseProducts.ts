@@ -1,10 +1,10 @@
-import { PagingRequest } from './common';
+import type { PagingRequest } from './common';
 
 /*
  * Request parameters
  */
 
-export type GetRequestWarehouseProductsGETParameters = Partial<
+export type ListWarehouseProductsQueryParameters = Partial<
   {
     /** Filter by partial or full product name */
     readonly query: string;
