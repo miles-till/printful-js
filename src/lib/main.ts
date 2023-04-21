@@ -3,7 +3,7 @@ import { RequestInit } from 'node-fetch';
 
 import { ErrorHandler } from '../types/functions';
 
-import * as api from '../api';
+import { getApi } from '../api';
 import { getFetch } from './fetch';
 import { getAPIFunctions } from './functions';
 
@@ -31,23 +31,7 @@ Options) => {
   const requestInit = getDefaultInit(apiKey);
   const fetch = getFetch(baseUrl, { ...requestInit, ...fetchConfig });
   const apiFunctions = getAPIFunctions(fetch);
-  return {
-    catalog: { ...api.getCatalogFunctions(apiFunctions) },
-    products: { ...api.getProductsFunctions(apiFunctions) },
-    ecommerce: { ...api.getEcommercePlatformSyncFunctions(apiFunctions) },
-    productTemplates: { ...api.getProductTemplatesFunctions(apiFunctions) },
-    orders: { ...api.getOrdersFunctions(apiFunctions) },
-    files: { ...api.getFileLibraryFunctions(apiFunctions) },
-    shipping: { ...api.getShippingRateFunctions(apiFunctions) },
-    countries: { ...api.getCountryStateCodeFunctions(apiFunctions) },
-    taxes: { ...api.getTaxRateFunctions(apiFunctions) },
-    webhooks: { ...api.getWebhookFunctions(apiFunctions) },
-    store: { ...api.getStoreInformationFunctions(apiFunctions) },
-    mockup: { ...api.getMockupGeneratorFunctions(apiFunctions) },
-    warehouseProducts: { ...api.getWarehouseProductsFunctions(apiFunctions) },
-    reports: { ...api.getReportsFunctions(apiFunctions) },
-    approvalSheets: { ...api.getApprovalSheetsFunctions(apiFunctions) },
-  };
+  return getApi(apiFunctions);
 };
 
 export default printful;
