@@ -9,15 +9,6 @@ export type PagingGETParameters = Partial<{
   readonly limit: number;
 }>;
 
-export type Paging = {
-  /** Total number of items available */
-  readonly total: number;
-  /** Current result set page offset */
-  readonly offset: number;
-  /** Max number of items per page */
-  readonly limit: number;
-};
-
 type BaseParameters = Record<string, unknown> | ReadonlyArray<unknown>;
 
 export type UrlParameters = BaseParameters;
@@ -37,10 +28,22 @@ export type DefaultErrorResponse = {
 export type SuccessResponse<R> = {
   readonly code: number;
   readonly result: R;
-  readonly paging?: Paging;
 };
 
-export type APIResponse<R> = SuccessResponse<R> | DefaultErrorResponse;
+export type PagingResponse = {
+  paging?: {
+    /** Total number of items available */
+    readonly total: number;
+    /** Current result set page offset */
+    readonly offset: number;
+    /** Max number of items per page */
+    readonly limit: number;
+  };
+};
+
+export type APIResponse<R> =
+  | (SuccessResponse<R> & PagingResponse)
+  | DefaultErrorResponse;
 
 export type IDParameter<T = number> = { readonly id: T };
 export type EmptyParameters = Record<string, unknown>;
