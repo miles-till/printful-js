@@ -26,14 +26,7 @@ export type QueryParameters =
   | undefined;
 export type RequestBody = BaseParameters;
 
-export type URLParameters = BaseParameters;
-export type POSTParameters = BaseParameters;
-export type GETParameters = Record<string, string | number | boolean>;
-export type PUTParameters = BaseParameters;
-export type DELETEParameters = BaseParameters;
-
-export type GetEndpoint<P extends URLParameters> = (parameters: P) => string;
-export type ResolveParameters<U, P> = (parameters: U & P) => readonly [U, P];
+export type GetEndpoint<P extends UrlParameters> = (parameters: P) => string;
 
 export type DefaultErrorResponse = {
   readonly code: number;
@@ -46,15 +39,6 @@ export type SuccessResponse<R> = {
   readonly result: R;
   readonly paging?: Paging;
 };
-
-export type APIListResponse<R> =
-  | (SuccessResponse<R> & { readonly paging: Paging })
-  | DefaultErrorResponse;
-
-// export type APIResponse<R> =
-//   | (SuccessResponse<R> & { readonly paging: Paging })
-//   | ErrorResponse;
-// & {ok:()=> guard}
 
 export type APIResponse<R> = SuccessResponse<R> | DefaultErrorResponse;
 
