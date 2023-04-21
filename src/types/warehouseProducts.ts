@@ -1,4 +1,4 @@
-import { PagingGETParameters } from './functions';
+import { PagingRequest } from './common';
 
 /*
  * Request parameters
@@ -8,7 +8,7 @@ export type GetRequestWarehouseProductsGETParameters = Partial<
   {
     /** Filter by partial or full product name */
     readonly query: string;
-  } & PagingGETParameters
+  } & PagingRequest
 >;
 
 /*

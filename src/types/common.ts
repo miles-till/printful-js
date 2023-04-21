@@ -1,6 +1,13 @@
 import { File } from './fileLibrary';
 import { ProductVariant } from './products';
 
+export type PagingRequest = Partial<{
+  /** Current result set page offset */
+  readonly offset: number;
+  /** Max number of items per page */
+  readonly limit: number;
+}>;
+
 export type PropertyMap = {
   [property_name: string]: unknown;
 };

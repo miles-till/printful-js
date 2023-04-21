@@ -1,11 +1,7 @@
 //https://developers.printful.com/docs/#tag/Product-Templates-API
 
-import {
-  APIFunctions,
-  EmptyParameters,
-  IDParameter,
-  PagingGETParameters,
-} from '../types/functions';
+import { PagingRequest } from '../types/common';
+import { APIFunctions, EmptyParameters, IDParameter } from '../types/functions';
 import { ProductTemplate } from '../types/productTemplates';
 
 /** Template ID (integer) or External Product ID (if prefixed with @) */
@@ -17,7 +13,7 @@ export const getProductTemplatesFunctions = ({ get, del }: APIFunctions) => {
     listProducts: get<
       readonly ProductTemplate[],
       EmptyParameters,
-      PagingGETParameters
+      PagingRequest
     >(() => `/product_templates`),
 
     /** Get information about a single product template */

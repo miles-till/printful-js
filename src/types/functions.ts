@@ -2,13 +2,6 @@ import { Response } from 'node-fetch';
 
 import { getAPIFunctions } from '../lib/functions';
 
-export type PagingGETParameters = Partial<{
-  /** Current result set page offset */
-  readonly offset: number;
-  /** Max number of items per page */
-  readonly limit: number;
-}>;
-
 type BaseParameters = Record<string, unknown> | ReadonlyArray<unknown>;
 
 export type UrlParameters = BaseParameters;

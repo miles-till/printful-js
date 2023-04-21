@@ -1,10 +1,7 @@
 //https://developers.printful.com/docs/#tag/Store-Information-API
 
-import {
-  APIFunctions,
-  EmptyParameters,
-  PagingGETParameters,
-} from '../types/functions';
+import { PagingRequest } from '../types/common';
+import { APIFunctions, EmptyParameters } from '../types/functions';
 import {
   PostRequestPackingSlipBody,
   PostResponsePackingSlip,
@@ -22,7 +19,7 @@ export const getStoreInformationFunctions = ({ get, create }: APIFunctions) => {
     >(() => `/store/packing-slip`),
 
     /** Get basic information about stores depending on the token access level */
-    listStores: get<StoreData[], PagingGETParameters>(() => `/stores`),
+    listStores: get<StoreData[], PagingRequest>(() => `/stores`),
 
     /** Get basic information about a store based on provided ID */
     getStoreInfo: get<StoreData>(() => `/store`),

@@ -4,9 +4,10 @@ import {
   IncompleteItem,
   Item,
   PackingSlip,
+  PagingRequest,
   Timestamp,
 } from './common';
-import { IDParameter, PagingGETParameters } from './functions';
+import { IDParameter } from './functions';
 import { RequireOnly } from './util';
 
 /*
@@ -15,7 +16,7 @@ import { RequireOnly } from './util';
 
 export type OrdersGetOrdersGETParameters = {
   readonly status: OrderStatus;
-} & PagingGETParameters;
+} & PagingRequest;
 
 export type OrdersPostOrderPOSTParameters = Partial<{
   /** Automatically submit the newly created order for fulfillment (skip the Draft phase) */

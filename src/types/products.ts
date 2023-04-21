@@ -1,6 +1,5 @@
-import { ItemOption } from './common';
+import { ItemOption, PagingRequest } from './common';
 import { File } from './fileLibrary';
-import { PagingGETParameters } from './functions';
 import { RequireOnly } from './util';
 
 /*
@@ -11,7 +10,7 @@ export type ProductsGetProductsGETParameters = Partial<
   {
     /** A comma-separated list of Category IDs of the Products that are to be returned */
     readonly category_id: string;
-  } & PagingGETParameters
+  } & PagingRequest
 >;
 
 export type PostRequestProductBody = {

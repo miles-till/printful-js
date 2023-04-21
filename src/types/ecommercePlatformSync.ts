@@ -1,4 +1,4 @@
-import { PagingGETParameters } from './functions';
+import { PagingRequest } from './common';
 
 /*
  * Request parameters
@@ -10,7 +10,7 @@ export type EcommerceGetProductsGETParameters = Partial<
     readonly status: string;
     /** Product search needle */
     readonly search: string;
-  } & PagingGETParameters
+  } & PagingRequest
 >;
 
 /*
