@@ -92,14 +92,10 @@ export const getProcessedResponse = async <R>(
 ) => {
   try {
     return await ratelimited(fetch)
-      .then((response) => {
-        return response.json() as unknown as R;
-      })
-      .catch((e: Error) => {
-        return getSyntheticError(e) as DefaultErrorResponse;
-      });
+      .then((response) => response.json() as R)
+      .catch((e: Error) => getSyntheticError(e));
   } catch (e: unknown) {
-    return defaultErrorHandler(e) as DefaultErrorResponse;
+    return defaultErrorHandler(e);
   }
 };
 
