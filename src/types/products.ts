@@ -64,7 +64,7 @@ type RequestSyncVariant = {
   /** Printful Variant ID that this Sync Variant is synced to */
   readonly variant_id: number;
   /** Retail price that this item is sold for */
-  readonly retail_price: number;
+  readonly retail_price: string;
   /** Indicates if this Sync Variant is ignored */
   readonly is_ignored: boolean;
   /** SKU of this Sync Variant */
@@ -133,7 +133,7 @@ export type SyncVariant = {
   /** Printful Variant ID that this Sync Variant is synced to */
   readonly variant_id: number;
   /** Retail price that this item is sold for */
-  readonly retail_price: number;
+  readonly retail_price: string;
   /** Currency in which prices are returned */
   readonly currency: string;
   /** Indicates if this Sync Variant is ignored */
