@@ -36,7 +36,7 @@ export const getCatalogFunctions = ({ get }: APIFunctions) => {
 
     /** Returns information about the size guide for a specific product. */
     getProductSizeGuide: get<
-      ProductSizeGuide,
+      ProductSizeGuide | null,
       GetProductSizeGuideUrlParameters,
       GetProductSizeGuideQueryParameters
     >(({ id }) => `/products/${id}/sizes`),
