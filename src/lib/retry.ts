@@ -1,3 +1,6 @@
+/* eslint-disable functional/no-loop-statements */
+/* eslint-disable functional/no-let */
+/* eslint-disable functional/no-mixed-types */
 import { Response } from 'node-fetch';
 
 export interface RetryPromiseOptions {

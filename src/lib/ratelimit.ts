@@ -1,3 +1,5 @@
+/* eslint-disable functional/immutable-data */
+/* eslint-disable functional/no-return-void */
 import { Response } from 'node-fetch';
 
 import { createPromiseDelay, retryPromise, RetryPromiseOptions } from './retry';
@@ -39,7 +41,10 @@ const ratelimit: Ratelimit = {
   reset: null,
 };
 
-const updateRatelimit = (response: Response, options: Readonly<RatelimitOptions>) => {
+const updateRatelimit = (
+  response: Response,
+  options: Readonly<RatelimitOptions>
+) => {
   const { headerLimit, headerRemaining, headerReset } = options;
 
   const ratelimitLimit = response.headers.get(headerLimit);
