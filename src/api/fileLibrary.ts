@@ -12,7 +12,10 @@ import type {
   IDParameter,
 } from '../types/functions';
 
-export const getFileLibraryFunctions = ({ create, get }: Readonly<APIFunctions>) => {
+export const getFileLibraryFunctions = ({
+  create,
+  get,
+}: Readonly<APIFunctions>) => {
   return {
     /**
      * Adds a new File to the library by providing URL of the file.

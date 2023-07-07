@@ -6,7 +6,11 @@ import type {
   WebhookInfo,
 } from '../types/webhook';
 
-export const getWebhookFunctions = ({ get, create, del }: Readonly<APIFunctions>) => {
+export const getWebhookFunctions = ({
+  get,
+  create,
+  del,
+}: Readonly<APIFunctions>) => {
   return {
     /** Returns configured webhook URL and list of webhook event types enabled for the store */
     getWebhookConfig: get<WebhookInfo>(() => `/webhooks`),

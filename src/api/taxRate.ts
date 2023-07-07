@@ -4,7 +4,10 @@ import type { Country } from '../types/countryStateCode';
 import type { APIFunctions, EmptyParameters } from '../types/functions';
 import type { CalculateTaxRatesRequestBody, TaxInfo } from '../types/taxRate';
 
-export const getTaxRateFunctions = ({ get, create }: Readonly<APIFunctions>) => {
+export const getTaxRateFunctions = ({
+  get,
+  create,
+}: Readonly<APIFunctions>) => {
   return {
     /** Retrieve state list that requires sales tax calculation */
     getStateTaxRates: get<readonly Country[]>(() => `/tax/countries`),

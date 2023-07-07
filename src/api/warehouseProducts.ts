@@ -13,7 +13,9 @@ import type {
 /** Product ID */
 type WarehouseProductID = IDParameter<number | string>;
 
-export const getWarehouseProductsFunctions = ({ get }: Readonly<APIFunctions>) => {
+export const getWarehouseProductsFunctions = ({
+  get,
+}: Readonly<APIFunctions>) => {
   return {
     /** Returns a list of warehouse products from your store */
     listWarehouseProducts: get<

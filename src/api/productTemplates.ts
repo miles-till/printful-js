@@ -11,7 +11,10 @@ import type { ProductTemplate } from '../types/productTemplates';
 /** Template ID (integer) or External Product ID (if prefixed with @) */
 type ProductTemplateID = IDParameter<number | string>;
 
-export const getProductTemplatesFunctions = ({ get, del }: Readonly<APIFunctions>) => {
+export const getProductTemplatesFunctions = ({
+  get,
+  del,
+}: Readonly<APIFunctions>) => {
   return {
     /** Returns a list of templates. */
     listProducts: get<

@@ -44,7 +44,9 @@ const makeRequest =
     getEndpoint: GetEndpoint<TUrlParameters>
   ) =>
   async (
-    parameters: Readonly<TUrlParameters & { query?: TQueryParameters; body?: TRequestBody; }>
+    parameters: Readonly<
+      TUrlParameters & { query?: TQueryParameters; body?: TRequestBody }
+    >
   ) => {
     const urlParams = parameters ?? ({} as TUrlParameters);
     const queryParams = parameters?.query;

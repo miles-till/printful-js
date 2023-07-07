@@ -14,7 +14,10 @@ import type {
   ProductTemplate,
 } from '../types/mockupGenerator';
 
-export const getMockupGeneratorFunctions = ({ get, create }: Readonly<APIFunctions>) => {
+export const getMockupGeneratorFunctions = ({
+  get,
+  create,
+}: Readonly<APIFunctions>) => {
   return {
     /**
      * Creates an asynchronous mockup generation task. Generation result can be retrieved using mockup generation task retrieval endpoint.

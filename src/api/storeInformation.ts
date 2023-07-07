@@ -8,7 +8,10 @@ import type {
   StoreData,
 } from '../types/storeInformation';
 
-export const getStoreInformationFunctions = ({ get, create }: Readonly<APIFunctions>) => {
+export const getStoreInformationFunctions = ({
+  get,
+  create,
+}: Readonly<APIFunctions>) => {
   return {
     /** Modifies packing slip information of the currently authorized Printful store. */
     modifyPackingSlip: create<
