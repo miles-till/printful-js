@@ -1,9 +1,9 @@
 //rename file printful js or do in index
 import { RequestInit } from 'node-fetch';
 
+import { getApi } from '../api';
 import { ErrorHandler } from '../types/functions';
 
-import { getApi } from '../api';
 import { getFetch } from './fetch';
 import { getAPIFunctions } from './functions';
 

@@ -44,10 +44,7 @@ const makeRequest =
     getEndpoint: GetEndpoint<TUrlParameters>
   ) =>
   async (
-    parameters: TUrlParameters & {
-      query?: TQueryParameters;
-      body?: TRequestBody;
-    }
+    parameters: Readonly<TUrlParameters & { query?: TQueryParameters; body?: TRequestBody; }>
   ) => {
     const urlParams = parameters ?? ({} as TUrlParameters);
     const queryParams = parameters?.query;
@@ -69,7 +66,7 @@ const makeRequest =
     );
   };
 
-const getSyntheticError = (e: Error): DefaultErrorResponse => ({
+const getSyntheticError = (e: Readonly<Error>): DefaultErrorResponse => ({
   code: 444,
   result: e.message,
   error: {
@@ -93,7 +90,7 @@ export const getProcessedResponse = async <R>(
   try {
     return await ratelimited(fetch)
       .then((response) => response.json() as R)
-      .catch((e: Error) => getSyntheticError(e));
+      .catch((e: Readonly<Error>) => getSyntheticError(e));
   } catch (e: unknown) {
     return defaultErrorHandler(e);
   }

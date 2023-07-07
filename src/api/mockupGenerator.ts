@@ -6,15 +6,15 @@ import type {
   IDParameter,
 } from '../types/functions';
 import type {
-  PostRequestMockupGenerationTaskBody,
   GenerationTask,
-  GetRequestPrintfilesGETParameters,
-  PrintfileInfo,
   GetRequestGenerationTaskGETParameters,
+  GetRequestPrintfilesGETParameters,
+  PostRequestMockupGenerationTaskBody,
+  PrintfileInfo,
   ProductTemplate,
 } from '../types/mockupGenerator';
 
-export const getMockupGeneratorFunctions = ({ get, create }: APIFunctions) => {
+export const getMockupGeneratorFunctions = ({ get, create }: Readonly<APIFunctions>) => {
   return {
     /**
      * Creates an asynchronous mockup generation task. Generation result can be retrieved using mockup generation task retrieval endpoint.

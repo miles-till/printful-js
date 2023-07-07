@@ -2,15 +2,15 @@
 
 import type { APIFunctions, EmptyParameters } from '../types/functions';
 import type {
+  CreateOrderQueryParameters,
+  CreateOrderRequestBody,
+  EstimateOrderRequestBody,
+  ListOrdersQueryParameters,
   Order,
   OrderCosts,
   OrderID,
-  ListOrdersQueryParameters,
-  CreateOrderQueryParameters,
   UpdateOrderQueryParameters,
-  CreateOrderRequestBody,
   UpdateOrderRequestBody,
-  EstimateOrderRequestBody,
 } from '../types/orders';
 
 export const getOrdersFunctions = ({
@@ -18,7 +18,7 @@ export const getOrdersFunctions = ({
   create,
   del,
   update,
-}: APIFunctions) => {
+}: Readonly<APIFunctions>) => {
   return {
     /** Returns list of order objects from your store */
     listOrders: get<

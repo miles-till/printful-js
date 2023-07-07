@@ -1,9 +1,9 @@
 //https://developers.printful.com/docs/#tag/File-Library-API
 
 import type {
-  File,
-  AvailableThreadColorsRequestBody,
   AddFileRequestBody,
+  AvailableThreadColorsRequestBody,
+  File,
   ThreadColors,
 } from '../types/fileLibrary';
 import type {
@@ -12,7 +12,7 @@ import type {
   IDParameter,
 } from '../types/functions';
 
-export const getFileLibraryFunctions = ({ create, get }: APIFunctions) => {
+export const getFileLibraryFunctions = ({ create, get }: Readonly<APIFunctions>) => {
   return {
     /**
      * Adds a new File to the library by providing URL of the file.

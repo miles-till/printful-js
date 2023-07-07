@@ -1,13 +1,13 @@
 //https://developers.printful.com/docs/#tag/Catalog-API
 
 import type {
+  Category,
   GetCategoryUrlParameters,
   GetProductSizeGuideQueryParameters,
   GetProductSizeGuideUrlParameters,
   GetProductUrlParameters,
-  ListProductsQueryParameters,
   GetVariantUrlParameters,
-  Category,
+  ListProductsQueryParameters,
   Product,
   ProductInfo,
   ProductSizeGuide,
@@ -15,7 +15,7 @@ import type {
 } from '../types/catalog';
 import type { APIFunctions, EmptyParameters } from '../types/functions';
 
-export const getCatalogFunctions = ({ get }: APIFunctions) => {
+export const getCatalogFunctions = ({ get }: Readonly<APIFunctions>) => {
   return {
     /** Returns list of Products available in the Printful */
     listProducts: get<

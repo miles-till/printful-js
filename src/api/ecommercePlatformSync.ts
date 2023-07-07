@@ -1,11 +1,11 @@
 //https://developers.printful.com/docs/#tag/Ecommerce-Platform-Sync-API
 
+import type { ListProductsQueryParameters } from '../types/ecommercePlatformSync';
 import type {
   APIFunctions,
   EmptyParameters,
   IDParameter,
 } from '../types/functions';
-import type { ListProductsQueryParameters } from '../types/ecommercePlatformSync';
 import type {
   ModifyVariantRequestBody,
   SyncProduct,
@@ -20,7 +20,7 @@ export const getEcommercePlatformSyncFunctions = ({
   get,
   update,
   del,
-}: APIFunctions) => {
+}: Readonly<APIFunctions>) => {
   return {
     /** Returns list of Sync Product objects from your store. */
     listProducts: get<

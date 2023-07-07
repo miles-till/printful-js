@@ -2,15 +2,15 @@
 
 import type {
   ApprovalSheet,
-  ApproveDesignRequestBody,
   ApproveDesignQueryParameters,
+  ApproveDesignRequestBody,
   ApproveDesignResponse,
-  SubmitChangesRequestBody,
   SubmitChangesQueryParameters,
+  SubmitChangesRequestBody,
 } from '../types/approvalSheets';
 import type { APIFunctions, EmptyParameters } from '../types/functions';
 
-export const getApprovalSheetsFunctions = ({ get, create }: APIFunctions) => {
+export const getApprovalSheetsFunctions = ({ get, create }: Readonly<APIFunctions>) => {
   return {
     /** Retrieve a list of approval sheets confirming suggested changes to files of on hold orders. */
     listApprovalSheets: get<readonly ApprovalSheet[]>(() => `/approval-sheets`),

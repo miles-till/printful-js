@@ -15,13 +15,13 @@ export const createPromiseDelay = (delayInMs: number) =>
 
 export const retryPromise = async (
   promise: () => Promise<Response>,
-  options?: Partial<RetryPromiseOptions>
+  options?: Readonly<Partial<RetryPromiseOptions>>
 ) => {
   const _options = { ...defaultRetryPromiseOptions, ...options };
   const { retryOnSuccess: retryOnSuccess, retries } = _options;
   let response = await promise();
 
-  for (var i = 0; i < retries; i++) {
+  for (let i = 0; i < retries; i++) {
     const retry = retryOnSuccess(response);
     if (retry) {
       if (typeof retry === 'number') {

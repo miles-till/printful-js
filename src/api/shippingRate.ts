@@ -2,11 +2,11 @@
 
 import type { APIFunctions, EmptyParameters } from '../types/functions';
 import type {
-  ShippingInfo,
   CalculateRatesRequestBody,
+  ShippingInfo,
 } from '../types/shippingRates';
 
-export const getShippingRateFunctions = ({ create }: APIFunctions) => {
+export const getShippingRateFunctions = ({ create }: Readonly<APIFunctions>) => {
   return {
     /** Returns available shipping options and rates for the given list of products. */
     calculateRates: create<

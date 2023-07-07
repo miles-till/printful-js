@@ -6,11 +6,11 @@ import type {
   IDParameter,
 } from '../types/functions';
 import type {
+  CreateProductRequestBody,
+  CreateVariantRequestBody,
   ListProductsQueryParameters,
   ModifyProductRequestBody,
   ModifyVariantRequestBody,
-  CreateProductRequestBody,
-  CreateVariantRequestBody,
   SyncProduct,
   SyncProductInfo,
   SyncVariant,
@@ -24,7 +24,7 @@ export const getProductsFunctions = ({
   create,
   update,
   del,
-}: APIFunctions) => {
+}: Readonly<APIFunctions>) => {
   return {
     /** Returns a list of Sync Product objects from your custom Printful store. */
     listProducts: get<

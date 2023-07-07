@@ -1,6 +1,6 @@
 import { Response } from 'node-fetch';
 
-import { RetryPromiseOptions, createPromiseDelay, retryPromise } from './retry';
+import { createPromiseDelay, retryPromise, RetryPromiseOptions } from './retry';
 
 export interface RatelimitOptions {
   headerLimit: string;
@@ -39,7 +39,7 @@ const ratelimit: Ratelimit = {
   reset: null,
 };
 
-const updateRatelimit = (response: Response, options: RatelimitOptions) => {
+const updateRatelimit = (response: Response, options: Readonly<RatelimitOptions>) => {
   const { headerLimit, headerRemaining, headerReset } = options;
 
   const ratelimitLimit = response.headers.get(headerLimit);
@@ -59,7 +59,7 @@ const updateRatelimit = (response: Response, options: RatelimitOptions) => {
 
 export const ratelimited = async (
   promise: () => Promise<Response>,
-  options?: Partial<RatelimitOptions>
+  options?: Readonly<Partial<RatelimitOptions>>
 ) => {
   const _options = { ...defaultRatelimitOptions, ...options };
 

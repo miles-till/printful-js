@@ -1,22 +1,22 @@
 import type { APIFunctions } from '../types/functions';
 
-import { getCatalogFunctions } from './catalog';
-import { getProductsFunctions } from './products';
-import { getEcommercePlatformSyncFunctions } from './ecommercePlatformSync';
-import { getProductTemplatesFunctions } from './productTemplates';
-import { getOrdersFunctions } from './orders';
-import { getFileLibraryFunctions } from './fileLibrary';
-import { getShippingRateFunctions } from './shippingRate';
-import { getCountryStateCodeFunctions } from './countryStateCode';
-import { getTaxRateFunctions } from './taxRate';
-import { getWebhookFunctions } from './webhook';
-import { getStoreInformationFunctions } from './storeInformation';
-import { getMockupGeneratorFunctions } from './mockupGenerator';
-import { getWarehouseProductsFunctions } from './warehouseProducts';
-import { getReportsFunctions } from './reports';
 import { getApprovalSheetsFunctions } from './approvalSheets';
+import { getCatalogFunctions } from './catalog';
+import { getCountryStateCodeFunctions } from './countryStateCode';
+import { getEcommercePlatformSyncFunctions } from './ecommercePlatformSync';
+import { getFileLibraryFunctions } from './fileLibrary';
+import { getMockupGeneratorFunctions } from './mockupGenerator';
+import { getOrdersFunctions } from './orders';
+import { getProductTemplatesFunctions } from './productTemplates';
+import { getProductsFunctions } from './products';
+import { getReportsFunctions } from './reports';
+import { getShippingRateFunctions } from './shippingRate';
+import { getStoreInformationFunctions } from './storeInformation';
+import { getTaxRateFunctions } from './taxRate';
+import { getWarehouseProductsFunctions } from './warehouseProducts';
+import { getWebhookFunctions } from './webhook';
 
-export const getApi = (apiFunctions: APIFunctions) => ({
+export const getApi = (apiFunctions: Readonly<APIFunctions>) => ({
   catalog: { ...getCatalogFunctions(apiFunctions) },
   products: { ...getProductsFunctions(apiFunctions) },
   ecommerce: { ...getEcommercePlatformSyncFunctions(apiFunctions) },

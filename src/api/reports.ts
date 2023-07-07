@@ -6,7 +6,7 @@ import type {
   Statistics,
 } from '../types/reports';
 
-export const getReportsFunctions = ({ get }: APIFunctions) => {
+export const getReportsFunctions = ({ get }: Readonly<APIFunctions>) => {
   return {
     /**
      * Returns statistics for specified report types.
