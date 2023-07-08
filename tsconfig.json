@@ -43,5 +43,10 @@
   },
   "include": ["src/**/*.ts", "src/types/response"],
   "exclude": ["node_modules/**"],
-  "compileOnSave": false
+  "compileOnSave": false,
+  "typedocOptions": {
+    "entryPoints": "src/",
+    "out": "build/docs",
+    "exclude": "**/*.spec.ts"
+  }
 }
