@@ -1,6 +1,6 @@
 {
-  "name": "printful-js",
-  "version": "2.0.0-alpha.0",
+  "name": "@miles-till/printful-js",
+  "version": "2.0.0",
   "description": "printful api wrapper for typescript.",
   "main": "build/main/index.js",
   "typings": "build/main/index.d.ts",
@@ -9,6 +9,9 @@
   "license": "MIT",
   "type": "module",
   "keywords": [],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "run-p 'build:*'",
     "build:main": "tsc -p tsconfig.json",
